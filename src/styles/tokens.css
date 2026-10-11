@@ -1,0 +1,371 @@
+@import 'tailwindcss';
+
+/* ===========================================================================
+   AMS UI · Tokens
+   Fuente de verdad: "AMS - Sistema de Gestión Académica.html".
+   - Tres capas: primitivas fijas (@theme), semánticas por tema (--ams-* en
+     [data-theme]) y su puente a utilidades Tailwind (@theme inline).
+   - Los componentes solo usan utilidades semánticas: bg-surface, text-fg,
+     border-border, shadow-glass... nunca hex crudo.
+   - Oscuro es el tema original de la marca; claro es derivado (ver docs).
+   =========================================================================== */
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* ---------- Primitivas (no cambian con el tema) ---------- */
+@theme {
+  /* Paleta cerrada: sin colores por defecto de Tailwind, todo pasa por aquí. */
+  --color-*: initial;
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  /* Marca */
+  --color-teal-300: #5fd4c8; /* teal-bright */
+  --color-teal-400: #4db6ac; /* teal */
+  --color-teal-500: #2e9e94; /* teal-deep */
+  --color-teal-700: #1a7068; /* derivado: texto turquesa sobre fondos claros */
+  --color-navy-700: #2c3e50;
+  --color-navy-800: #1e2936;
+  --color-navy-900: #142030;
+  --color-navy-950: #0d1620;
+
+  /* Tipografía */
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Consolas, monospace;
+
+  --text-2xs: 0.6875rem; /* 11px: tags y metadatos */
+  --text-2xs--line-height: 1.4;
+  --text-lead: 1.0625rem; /* 17px: subtítulos de sección */
+  --text-lead--line-height: 1.55;
+  --text-h3: 1.1875rem; /* 19px: título de tarjeta */
+  --text-h3--line-height: 1.3;
+  --text-h3--letter-spacing: -0.01em;
+  --text-h2: 1.5rem; /* 24px: título de bloque */
+  --text-h2--line-height: 1.2;
+  --text-h2--letter-spacing: -0.015em;
+  --text-h1: clamp(2rem, 4.5vw, 3rem); /* 32–48px: título de sección */
+  --text-h1--line-height: 1.1;
+  --text-h1--letter-spacing: -0.02em;
+  --text-display: clamp(2.5rem, 6vw, 4.25rem); /* 40–68px: hero */
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.025em;
+  --text-stat: clamp(2.25rem, 4vw, 3.25rem); /* 36–52px: cifras destacadas */
+  --text-stat--line-height: 1;
+  --text-stat--letter-spacing: -0.02em;
+
+  /* Radios por jerarquía (el HTML usa 12 / 18 / 28 y píldora). */
+  --radius-xs: 6px; /* celdas, días de calendario */
+  --radius-sm: 8px; /* ítems de menú, filas */
+  --radius-md: 12px; /* campos, acordeones, popovers */
+  --radius-lg: 18px; /* tarjetas */
+  --radius-xl: 28px; /* paneles grandes, diálogos */
+
+  /* Alturas de control (botón base = 12px + 20px línea + 12px). */
+  --spacing-control-sm: 2.25rem; /* 36px */
+  --spacing-control-md: 2.75rem; /* 44px */
+  --spacing-control-lg: 3.25rem; /* 52px */
+
+  /* Breakpoints del HTML: 880 (nav y grillas) y 980 (hero); 1240 contenedor. */
+  --breakpoint-md: 55rem;
+  --breakpoint-lg: 61.25rem;
+  --breakpoint-xl: 77.5rem;
+  --container-page: 77.5rem;
+  --container-prose: 45rem;
+
+  /* Movimiento: salidas suaves, sin rebotes. */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-fade-in: fade-in 200ms ease-out both;
+  --animate-overlay-in: overlay-in 220ms var(--ease-out-quint) both;
+  --animate-pulse-ring: pulse-ring 2s infinite;
+  --animate-float: float 20s ease-in-out infinite;
+  --animate-sheet-in: sheet-in 300ms var(--ease-out-quint) both;
+  --animate-collapse-down: collapse-down 220ms var(--ease-out-quint);
+  --animate-collapse-up: collapse-up 180ms ease-out;
+  --animate-toast-in: toast-in 280ms var(--ease-out-quint) both;
+  --animate-progress-indeterminate: progress-indeterminate 1.4s ease-in-out infinite;
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+  }
+  @keyframes overlay-in {
+    from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  }
+  @keyframes pulse-ring {
+    0% { box-shadow: 0 0 0 0 rgb(77 182 172 / 0.6); }
+    70% { box-shadow: 0 0 0 8px rgb(77 182 172 / 0); }
+    100% { box-shadow: 0 0 0 0 rgb(77 182 172 / 0); }
+  }
+  /* El lado de entrada lo fija cada panel con --sheet-from (p. ej. 100% 0). */
+  @keyframes sheet-in {
+    from { translate: var(--sheet-from, 100% 0); }
+  }
+  /* Altura medida por Radix en Collapsible y Accordion. */
+  @keyframes collapse-down {
+    from { height: 0; }
+    to { height: var(--radix-collapsible-content-height); }
+  }
+  @keyframes collapse-up {
+    from { height: var(--radix-collapsible-content-height); }
+    to { height: 0; }
+  }
+  @keyframes progress-indeterminate {
+    from { translate: -100% 0; }
+    to { translate: 300% 0; }
+  }
+  @keyframes toast-in {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.06); }
+    66% { transform: translate(-30px, 40px) scale(0.96); }
+  }
+}
+
+/* ---------- Semánticas: puente a utilidades ---------- */
+@theme inline {
+  --color-bg: var(--ams-bg);
+  --color-surface: var(--ams-surface);
+  --color-sunken: var(--ams-sunken);
+  --color-glass: var(--ams-glass);
+  --color-glass-strong: var(--ams-glass-strong);
+  --color-hover: var(--ams-hover);
+
+  --color-fg: var(--ams-fg);
+  --color-fg-muted: var(--ams-fg-muted);
+  --color-fg-subtle: var(--ams-fg-subtle);
+
+  --color-border: var(--ams-border);
+  --color-border-strong: var(--ams-border-strong);
+  --color-ring: var(--ams-ring);
+
+  --color-primary: var(--color-teal-400);
+  --color-on-primary: var(--color-navy-950);
+  --color-accent: var(--ams-accent);
+  --color-accent-soft: var(--ams-accent-soft);
+  --color-accent-border: var(--ams-accent-border);
+
+  --color-info: var(--ams-info);
+  --color-info-soft: var(--ams-info-soft);
+  --color-info-border: var(--ams-info-border);
+  --color-success: var(--ams-success);
+  --color-success-soft: var(--ams-success-soft);
+  --color-success-border: var(--ams-success-border);
+  --color-warning: var(--ams-warning);
+  --color-warning-soft: var(--ams-warning-soft);
+  --color-warning-border: var(--ams-warning-border);
+  --color-danger: var(--ams-danger);
+  --color-danger-soft: var(--ams-danger-soft);
+  --color-danger-border: var(--ams-danger-border);
+  --color-on-danger: var(--ams-on-danger);
+
+  /* Gráficos: orden fijo, validado (CVD y contraste) en ambos temas. */
+  --color-chart-1: var(--ams-chart-1);
+  --color-chart-2: var(--ams-chart-2);
+  --color-chart-3: var(--ams-chart-3);
+  --color-chart-4: var(--ams-chart-4);
+  --color-chart-5: var(--ams-chart-5);
+
+  --shadow-glass: var(--ams-shadow-glass);
+  --shadow-glow: var(--ams-shadow-glow);
+  --shadow-glow-lg: var(--ams-shadow-glow-lg);
+  --shadow-pop: var(--ams-shadow-pop);
+}
+
+/* ---------- Valores por tema ---------- */
+:root,
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ams-bg: #0d1620;
+  --ams-surface: #172331; /* superficie sólida: menús y popovers legibles */
+  --ams-sunken: rgb(0 0 0 / 0.2);
+  --ams-glass: rgb(255 255 255 / 0.06);
+  --ams-glass-strong: rgb(255 255 255 / 0.1);
+  --ams-hover: rgb(255 255 255 / 0.06);
+
+  --ams-fg: #e8eef5;
+  --ams-fg-muted: #aab8c7;
+  --ams-fg-subtle: #8594a6; /* original #7d8b9d: 4.42:1 sobre vidrio, se aclara a AA */
+
+  --ams-border: rgb(255 255 255 / 0.12);
+  --ams-border-strong: rgb(255 255 255 / 0.18);
+  --ams-ring: #5fd4c8;
+
+  --ams-accent: #5fd4c8;
+  --ams-accent-soft: rgb(77 182 172 / 0.12);
+  --ams-accent-border: rgb(77 182 172 / 0.3);
+
+  --ams-info: #88b9ff;
+  --ams-info-soft: rgb(94 168 255 / 0.15);
+  --ams-info-border: rgb(94 168 255 / 0.25);
+  --ams-success: #6ee7a8;
+  --ams-success-soft: rgb(52 211 153 / 0.12);
+  --ams-success-border: rgb(52 211 153 / 0.28);
+  --ams-warning: #ffd28a;
+  --ams-warning-soft: rgb(255 193 107 / 0.12);
+  --ams-warning-border: rgb(255 193 107 / 0.25);
+  --ams-danger: #ff8f8f;
+  --ams-danger-soft: rgb(255 107 107 / 0.12);
+  --ams-danger-border: rgb(255 107 107 / 0.3);
+  --ams-on-danger: #0d1620; /* 8,3:1 sobre danger */
+
+  /* turquesa, naranja, azul, magenta, violeta: validados sobre #172331 */
+  --ams-chart-1: #22a595;
+  --ams-chart-2: #c97a1f;
+  --ams-chart-3: #4c86ee;
+  --ams-chart-4: #d9608a;
+  --ams-chart-5: #8b74e6;
+
+  --ams-shadow-glass: 0 8px 32px 0 rgb(0 0 0 / 0.35), inset 0 1px 0 0 rgb(255 255 255 / 0.08);
+  --ams-shadow-glow: 0 8px 24px rgb(77 182 172 / 0.35), inset 0 1px 0 rgb(255 255 255 / 0.3);
+  --ams-shadow-glow-lg: 0 12px 32px rgb(77 182 172 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.4);
+  --ams-shadow-pop: 0 24px 64px -12px rgb(0 0 0 / 0.6), inset 0 1px 0 0 rgb(255 255 255 / 0.08);
+
+  --ams-gradient-text: linear-gradient(135deg, #5fd4c8 0%, #4db6ac 50%, #7dd3c0 100%);
+  --ams-aurora:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgb(77 182 172 / 0.28), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgb(77 182 172 / 0.18), transparent 55%),
+    radial-gradient(ellipse 90% 70% at 50% 90%, rgb(44 62 80 / 0.55), transparent 65%),
+    linear-gradient(180deg, #0d1620 0%, #111c2a 50%, #0d1620 100%);
+  --ams-aurora-dots: rgb(255 255 255 / 0.04);
+  --ams-blob-opacity: 0.5;
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+
+  --ams-bg: #f2f6f9;
+  --ams-surface: #ffffff;
+  --ams-sunken: rgb(13 22 32 / 0.04);
+  --ams-glass: rgb(255 255 255 / 0.62);
+  --ams-glass-strong: rgb(255 255 255 / 0.8);
+  --ams-hover: rgb(13 22 32 / 0.05);
+
+  --ams-fg: #0d1620;
+  --ams-fg-muted: #3d4c5c;
+  --ams-fg-subtle: #5b6b7c;
+
+  --ams-border: rgb(13 22 32 / 0.1);
+  --ams-border-strong: rgb(13 22 32 / 0.17);
+  --ams-ring: #1a7068;
+
+  --ams-accent: #1a7068;
+  --ams-accent-soft: rgb(46 158 148 / 0.1);
+  --ams-accent-border: rgb(46 158 148 / 0.35);
+
+  --ams-info: #1a55ad;
+  --ams-info-soft: rgb(31 95 191 / 0.08);
+  --ams-info-border: rgb(31 95 191 / 0.25);
+  --ams-success: #126b3a;
+  --ams-success-soft: rgb(22 122 67 / 0.08);
+  --ams-success-border: rgb(22 122 67 / 0.3);
+  --ams-warning: #7a5000;
+  --ams-warning-soft: rgb(245 166 35 / 0.14);
+  --ams-warning-border: rgb(200 130 0 / 0.35);
+  --ams-danger: #a92626;
+  --ams-danger-soft: rgb(194 47 47 / 0.08);
+  --ams-danger-border: rgb(194 47 47 / 0.3);
+  --ams-on-danger: #ffffff; /* 5,6:1 sobre danger */
+
+  /* mismos tonos, un paso más oscuros: validados sobre #ffffff */
+  --ams-chart-1: #1a9488;
+  --ams-chart-2: #d17a1a;
+  --ams-chart-3: #2f72db;
+  --ams-chart-4: #cf4f82;
+  --ams-chart-5: #6e57d6;
+
+  --ams-shadow-glass: 0 8px 32px -8px rgb(13 22 32 / 0.12), inset 0 1px 0 0 rgb(255 255 255 / 0.7);
+  --ams-shadow-glow: 0 8px 20px rgb(46 158 148 / 0.28), inset 0 1px 0 rgb(255 255 255 / 0.35);
+  --ams-shadow-glow-lg: 0 12px 28px rgb(46 158 148 / 0.4), inset 0 1px 0 rgb(255 255 255 / 0.45);
+  --ams-shadow-pop: 0 24px 56px -16px rgb(13 22 32 / 0.25), 0 0 0 1px rgb(13 22 32 / 0.04);
+
+  --ams-gradient-text: linear-gradient(135deg, #2e9e94 0%, #1a7068 100%);
+  --ams-aurora:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgb(77 182 172 / 0.18), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 85% 25%, rgb(94 168 255 / 0.1), transparent 55%),
+    linear-gradient(180deg, #f2f6f9 0%, #eaf1f5 50%, #f2f6f9 100%);
+  --ams-aurora-dots: rgb(13 22 32 / 0.05);
+  --ams-blob-opacity: 0.22;
+}
+
+/* Capas: valores fijos, se consumen con z-(--z-*). */
+:root {
+  --z-sticky: 100;
+  --z-overlay: 200;
+  --z-modal: 210;
+  --z-popover: 300;
+  --z-toast: 400;
+  --z-tooltip: 500;
+
+  --duration-fast: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --opacity-disabled: 0.5;
+  --gradient-primary: linear-gradient(135deg, #5fd4c8 0%, #2e9e94 100%);
+}
+
+/* ---------- Utilidades de marca ---------- */
+@utility glass {
+  background-color: var(--color-glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-glass);
+}
+@utility glass-strong {
+  background-color: var(--color-glass-strong);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid var(--color-border-strong);
+  box-shadow: var(--shadow-glass);
+}
+@utility bg-gradient-primary {
+  background-image: var(--gradient-primary);
+}
+@utility text-gradient {
+  background-image: var(--ams-gradient-text);
+  background-clip: text;
+  color: transparent;
+}
+@utility focus-ring {
+  outline: 2px solid var(--color-ring);
+  outline-offset: 2px;
+}
+@utility state-disabled {
+  opacity: var(--opacity-disabled);
+  pointer-events: none;
+}
+
+/* ---------- Base ---------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background-color: rgb(77 182 172 / 0.35);
+  }
+}
+
+/* Movimiento reducido: único uso de !important, necesario para anular
+   animaciones declaradas en cualquier capa. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

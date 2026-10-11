@@ -1,0 +1,1954 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AMS — Sistema de Gestión Académica</title>
+<link rel="icon" href="assets/logo.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  /* ---------- TOKENS ---------- */
+  :root {
+    --bg-0: #0d1620;
+    --bg-1: #142030;
+    --navy: #2C3E50;
+    --navy-deep: #1e2936;
+    --teal: #4DB6AC;
+    --teal-bright: #5FD4C8;
+    --teal-deep: #2E9E94;
+    --ink: #e8eef5;
+    --ink-dim: #aab8c7;
+    --ink-mute: #7d8b9d;
+    --glass: rgba(255, 255, 255, 0.06);
+    --glass-strong: rgba(255, 255, 255, 0.10);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-border-strong: rgba(255, 255, 255, 0.18);
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 0 rgba(255,255,255,0.08);
+    --radius-sm: 12px;
+    --radius-md: 18px;
+    --radius-lg: 28px;
+    --ff-display: "Space Grotesk", system-ui, sans-serif;
+    --ff-body: "Inter", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--ff-body);
+    background: var(--bg-0);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.5;
+  }
+
+  /* ---------- AURORA BACKGROUND ---------- */
+  .aurora {
+    position: fixed; inset: 0;
+    z-index: -2;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(77, 182, 172, 0.28), transparent 60%),
+      radial-gradient(ellipse 70% 50% at 85% 25%, rgba(77, 182, 172, 0.18), transparent 55%),
+      radial-gradient(ellipse 90% 70% at 50% 90%, rgba(44, 62, 80, 0.55), transparent 65%),
+      linear-gradient(180deg, #0d1620 0%, #111c2a 50%, #0d1620 100%);
+  }
+  .aurora::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+  }
+  .aurora-blob {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(90px);
+    opacity: 0.5;
+    z-index: -1;
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite;
+  }
+  .aurora-blob.b1 { width: 540px; height: 540px; background: radial-gradient(circle, rgba(77,182,172,0.55), transparent 70%); top: -200px; left: -160px; }
+  .aurora-blob.b2 { width: 460px; height: 460px; background: radial-gradient(circle, rgba(94,168,255,0.30), transparent 70%); top: 30%; right: -140px; animation-delay: -7s; }
+  .aurora-blob.b3 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(77,182,172,0.25), transparent 70%); bottom: -200px; left: 30%; animation-delay: -12s; }
+
+  @keyframes float {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(40px, -30px) scale(1.06); }
+    66% { transform: translate(-30px, 40px) scale(0.96); }
+  }
+
+  /* ---------- GLASS PRIMITIVE ---------- */
+  .glass {
+    background: var(--glass);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-glass);
+  }
+  .glass-strong {
+    background: var(--glass-strong);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid var(--glass-border-strong);
+    box-shadow: var(--shadow-glass);
+  }
+
+  /* ---------- LAYOUT ---------- */
+  .container {
+    width: 100%;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- NAVBAR ---------- */
+  .nav-wrap {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 1180px;
+    z-index: 100;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px 12px 22px;
+    border-radius: 100px;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--ff-display);
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-brand img {
+    width: 36px; height: 36px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(77,182,172,0.25);
+  }
+  .nav-brand span small {
+    display: block;
+    font-family: var(--ff-body);
+    font-weight: 400;
+    font-size: 11px;
+    color: var(--ink-mute);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-top: -2px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+  .nav-links a {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 100px;
+    color: var(--ink-dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  .nav-links a:hover {
+    color: var(--ink);
+    background: rgba(255,255,255,0.06);
+  }
+  .nav-cta {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  @media (max-width: 880px) {
+    .nav-links { display: none; }
+  }
+
+  /* ---------- BUTTONS ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 22px;
+    border-radius: 100px;
+    font-family: var(--ff-body);
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal-deep) 100%);
+    color: #0d1620;
+    box-shadow: 0 8px 24px rgba(77,182,172,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 32px rgba(77,182,172,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+  .btn-ghost {
+    background: var(--glass);
+    color: var(--ink);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(12px);
+  }
+  .btn-ghost:hover {
+    background: var(--glass-strong);
+    border-color: var(--glass-border-strong);
+  }
+  .btn-lg {
+    padding: 16px 28px;
+    font-size: 15px;
+  }
+  .btn .arrow {
+    transition: transform 0.2s ease;
+  }
+  .btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero {
+    min-height: 100vh;
+    padding: 140px 0 80px;
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+  }
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px 6px 8px;
+    border-radius: 100px;
+    background: rgba(77,182,172,0.10);
+    border: 1px solid rgba(77,182,172,0.25);
+    color: var(--teal-bright);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    margin-bottom: 24px;
+  }
+  .eyebrow .dot {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: rgba(77,182,172,0.25);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+  }
+  .eyebrow .pulse {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-bright);
+    box-shadow: 0 0 0 0 rgba(77,182,172,0.6);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(77,182,172,0.6); }
+    70% { box-shadow: 0 0 0 8px rgba(77,182,172,0); }
+    100% { box-shadow: 0 0 0 0 rgba(77,182,172,0); }
+  }
+  h1.hero-title {
+    font-family: var(--ff-display);
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+    text-wrap: balance;
+  }
+  h1 .accent {
+    background: linear-gradient(135deg, var(--teal-bright) 0%, var(--teal) 50%, #7dd3c0 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--ink-dim);
+    margin-bottom: 32px;
+    max-width: 540px;
+    line-height: 1.55;
+    text-wrap: pretty;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-meta-item strong {
+    font-family: var(--ff-display);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .hero-meta-item span {
+    font-size: 12px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* hero visual: dashboard mock */
+  .hero-mock {
+    position: relative;
+    border-radius: var(--radius-lg);
+    padding: 18px;
+    transform: perspective(1400px) rotateY(-8deg) rotateX(4deg);
+    transition: transform 0.6s ease;
+  }
+  .hero-mock:hover {
+    transform: perspective(1400px) rotateY(-4deg) rotateX(2deg);
+  }
+  .mock-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px 14px;
+    border-bottom: 1px solid var(--glass-border);
+    margin-bottom: 16px;
+  }
+  .mock-bar .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+  }
+  .mock-bar .url {
+    margin-left: 8px;
+    font-family: ui-monospace, "SF Mono", monospace;
+    font-size: 11px;
+    color: var(--ink-mute);
+    background: rgba(0,0,0,0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+  }
+  .mock-content {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 14px;
+  }
+  .mock-side {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+  }
+  .mock-side-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 9px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: var(--ink-dim);
+  }
+  .mock-side-item.active {
+    background: rgba(77,182,172,0.15);
+    color: var(--teal-bright);
+    border: 1px solid rgba(77,182,172,0.25);
+  }
+  .mock-side-item .ico {
+    width: 14px; height: 14px;
+    background: currentColor;
+    opacity: 0.7;
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }
+  .mock-main {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .mock-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .mock-stat {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 10px;
+  }
+  .mock-stat-label {
+    font-size: 10px;
+    color: var(--ink-mute);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .mock-stat-val {
+    font-family: var(--ff-display);
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-top: 2px;
+  }
+  .mock-stat-val.up { color: var(--teal-bright); }
+  .mock-chart {
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 10px;
+    padding: 12px;
+    height: 130px;
+    position: relative;
+    overflow: hidden;
+  }
+  .mock-chart-title {
+    font-size: 11px;
+    color: var(--ink-mute);
+    margin-bottom: 8px;
+  }
+  .mock-chart svg { width: 100%; height: 90px; display: block; }
+
+  .floating-card {
+    position: absolute;
+    padding: 12px 14px;
+    border-radius: 14px;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    animation: floatCard 6s ease-in-out infinite;
+  }
+  .floating-card.top {
+    top: -20px; left: -30px;
+    animation-delay: -2s;
+  }
+  .floating-card.bot {
+    bottom: -10px; right: -30px;
+  }
+  .floating-card .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+    display: flex; align-items: center; justify-content: center;
+    color: #0d1620; font-weight: 700;
+  }
+  .floating-card .meta strong {
+    display: block;
+    color: var(--ink);
+    font-size: 13px;
+    font-weight: 600;
+  }
+  .floating-card .meta span {
+    color: var(--ink-mute);
+    font-size: 11px;
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @media (max-width: 980px) {
+    .floating-card { display: none; }
+    .hero-mock { transform: none; }
+  }
+
+  /* ---------- SECTION ---------- */
+  section { padding: 100px 0; }
+  .section-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 60px;
+  }
+  .section-head .eyebrow { margin-bottom: 16px; }
+  .section-head h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(32px, 4.5vw, 48px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .section-head h2 .accent {
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .section-head p {
+    color: var(--ink-dim);
+    font-size: 17px;
+    text-wrap: pretty;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .features-grid { grid-template-columns: 1fr; } }
+  .feature {
+    padding: 28px;
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+  .feature:hover {
+    transform: translateY(-4px);
+    border-color: rgba(77,182,172,0.3);
+  }
+  .feature .icon-wrap {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(77,182,172,0.25), rgba(77,182,172,0.05));
+    border: 1px solid rgba(77,182,172,0.3);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+    color: var(--teal-bright);
+  }
+  .feature h3 {
+    font-family: var(--ff-display);
+    font-size: 19px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .feature p {
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ---------- MODULES (Bento) ---------- */
+  .bento {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .bento { grid-template-columns: 1fr; } }
+  .bento-card {
+    padding: 28px;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+  }
+  .bento-card.span-2 { grid-row: span 2; min-height: 540px; }
+  @media (max-width: 880px) { .bento-card.span-2 { grid-row: auto; min-height: 320px; } }
+  .bento-card .tag {
+    font-family: ui-monospace, monospace;
+    font-size: 11px;
+    color: var(--teal-bright);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .bento-card h3 {
+    font-family: var(--ff-display);
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    letter-spacing: -0.015em;
+  }
+  .bento-card p {
+    color: var(--ink-dim);
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+  .bento-visual {
+    margin-top: auto;
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* mini gradebook viz */
+  .grades {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr repeat(4, 36px);
+    gap: 6px;
+    font-size: 11px;
+  }
+  .grades .row { display: contents; }
+  .grades .name {
+    padding: 8px 10px;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    color: var(--ink-dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .grades .cell {
+    padding: 8px 0;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    font-family: var(--ff-display);
+    border: 1px solid var(--glass-border);
+  }
+  .cell.g-a { background: rgba(77,182,172,0.18); color: var(--teal-bright); border-color: rgba(77,182,172,0.3); }
+  .cell.g-b { background: rgba(94,168,255,0.15); color: #88b9ff; border-color: rgba(94,168,255,0.25); }
+  .cell.g-c { background: rgba(255,193,107,0.12); color: #ffd28a; border-color: rgba(255,193,107,0.25); }
+  .cell.g-d { background: rgba(0,0,0,0.2); color: var(--ink-mute); }
+
+  /* calendar mini */
+  .cal {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 4px;
+  }
+  .cal .day {
+    aspect-ratio: 1;
+    background: rgba(0,0,0,0.18);
+    border: 1px solid var(--glass-border);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: var(--ink-mute);
+    position: relative;
+  }
+  .cal .day.has-event {
+    background: rgba(77,182,172,0.15);
+    border-color: rgba(77,182,172,0.35);
+    color: var(--teal-bright);
+  }
+  .cal .day.today {
+    background: var(--teal);
+    color: #0d1620;
+    font-weight: 700;
+    border-color: var(--teal-bright);
+  }
+  .cal .day .pill {
+    position: absolute;
+    bottom: 3px;
+    width: 4px; height: 4px; border-radius: 50%;
+    background: var(--teal-bright);
+  }
+
+  /* enrollment chart */
+  .bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 8px;
+    width: 100%;
+    height: 100%;
+    padding-top: 20px;
+  }
+  .bars .bar {
+    flex: 1;
+    background: linear-gradient(180deg, var(--teal-bright), var(--teal-deep));
+    border-radius: 6px 6px 2px 2px;
+    position: relative;
+    opacity: 0.85;
+    min-height: 12px;
+  }
+  .bars .bar::after {
+    content: attr(data-month);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- ROLES ---------- */
+  .roles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .roles-grid { grid-template-columns: 1fr; } }
+  .role {
+    padding: 32px 28px;
+    border-radius: var(--radius-md);
+    position: relative;
+    overflow: hidden;
+  }
+  .role::before {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--teal-bright), transparent);
+    opacity: 0.5;
+  }
+  .role .avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--ff-display);
+    font-weight: 700;
+    color: #0d1620;
+    font-size: 22px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 20px rgba(77,182,172,0.25);
+  }
+  .role h3 {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .role .lead {
+    color: var(--teal-bright);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+  }
+  .role ul {
+    list-style: none;
+    margin-top: 16px;
+  }
+  .role ul li {
+    color: var(--ink-dim);
+    font-size: 14px;
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-top: 1px solid var(--glass-border);
+  }
+  .role ul li::before {
+    content: "";
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: rgba(77,182,172,0.15);
+    border: 1px solid rgba(77,182,172,0.3);
+    flex-shrink: 0;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%234DB6AC' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='3 8 7 12 13 4'/></svg>");
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* ---------- STATS BANNER ---------- */
+  .stats {
+    padding: 60px 0;
+  }
+  .stats-card {
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    position: relative;
+    overflow: hidden;
+  }
+  @media (max-width: 880px) { .stats-card { grid-template-columns: repeat(2, 1fr); padding: 32px; } }
+  .stats-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at top, rgba(77,182,172,0.12), transparent 70%);
+    pointer-events: none;
+  }
+  .stat-item {
+    position: relative;
+    text-align: center;
+  }
+  .stat-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    right: -15px; top: 10%;
+    width: 1px; height: 80%;
+    background: var(--glass-border);
+  }
+  @media (max-width: 880px) {
+    .stat-item:not(:last-child)::after { display: none; }
+  }
+  .stat-item strong {
+    display: block;
+    font-family: var(--ff-display);
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 600;
+    background: linear-gradient(180deg, var(--ink), var(--teal-bright));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  .stat-item span {
+    color: var(--ink-dim);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .testimonials { grid-template-columns: 1fr; } }
+  .testimonial {
+    padding: 28px;
+    border-radius: var(--radius-md);
+    display: flex;
+    flex-direction: column;
+  }
+  .testimonial .quote-mark {
+    font-family: var(--ff-display);
+    font-size: 60px;
+    color: var(--teal);
+    opacity: 0.3;
+    line-height: 0.5;
+    margin-bottom: 8px;
+  }
+  .testimonial blockquote {
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    flex: 1;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid var(--glass-border);
+  }
+  .testimonial-author .av {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-bright), var(--teal-deep));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d1620;
+    font-weight: 700;
+    font-family: var(--ff-display);
+  }
+  .testimonial-author strong {
+    display: block;
+    font-size: 14px;
+    color: var(--ink);
+  }
+  .testimonial-author span {
+    font-size: 12px;
+    color: var(--ink-mute);
+  }
+
+  /* ---------- PRICING ---------- */
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 880px) { .pricing { grid-template-columns: 1fr; } }
+  .plan {
+    padding: 32px 28px;
+    border-radius: var(--radius-md);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan.featured {
+    border-color: rgba(77,182,172,0.4);
+    background: linear-gradient(180deg, rgba(77,182,172,0.10), rgba(255,255,255,0.06));
+    box-shadow: 0 12px 40px rgba(77,182,172,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .plan-badge {
+    position: absolute;
+    top: -10px; left: 50%;
+    transform: translateX(-50%);
+    background: var(--teal);
+    color: #0d1620;
+    padding: 4px 12px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .plan h3 {
+    font-family: var(--ff-display);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+  .plan .desc {
+    color: var(--ink-mute);
+    font-size: 13px;
+    margin-bottom: 24px;
+  }
+  .plan .price {
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--glass-border);
+  }
+  .plan .price strong {
+    font-family: var(--ff-display);
+    font-size: 44px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+  }
+  .plan .price span {
+    color: var(--ink-mute);
+    font-size: 14px;
+    margin-left: 4px;
+  }
+  .plan ul {
+    list-style: none;
+    margin-bottom: 28px;
+    flex: 1;
+  }
+  .plan ul li {
+    padding: 8px 0;
+    color: var(--ink-dim);
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .plan ul li::before {
+    content: "✓";
+    color: var(--teal-bright);
+    font-weight: 700;
+    flex-shrink: 0;
+    width: 18px; height: 18px;
+    background: rgba(77,182,172,0.15);
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .plan .btn { width: 100%; justify-content: center; }
+
+  /* ---------- FAQ ---------- */
+  .faq-list {
+    max-width: 820px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  details.faq {
+    padding: 0;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    transition: all 0.2s ease;
+  }
+  details.faq summary {
+    padding: 20px 24px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--ff-display);
+    font-weight: 500;
+    font-size: 16px;
+    color: var(--ink);
+  }
+  details.faq summary::-webkit-details-marker { display: none; }
+  details.faq summary .plus {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    background: rgba(77,182,172,0.15);
+    border: 1px solid rgba(77,182,172,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--teal-bright);
+    transition: transform 0.3s ease;
+    font-size: 14px;
+    line-height: 1;
+  }
+  details.faq[open] summary .plus { transform: rotate(45deg); }
+  details.faq[open] {
+    background: rgba(77,182,172,0.04);
+  }
+  details.faq .ans {
+    padding: 0 24px 20px;
+    color: var(--ink-dim);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta-section {
+    padding: 100px 0;
+  }
+  .cta-card {
+    padding: 70px 40px;
+    text-align: center;
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 80% at 50% 0%, rgba(77,182,172,0.25), transparent 70%),
+      radial-gradient(ellipse 40% 60% at 50% 100%, rgba(77,182,172,0.15), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-card .content {
+    position: relative;
+  }
+  .cta-card h2 {
+    font-family: var(--ff-display);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    text-wrap: balance;
+  }
+  .cta-card p {
+    color: var(--ink-dim);
+    font-size: 17px;
+    margin-bottom: 32px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    text-wrap: pretty;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 60px 0 30px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 40px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand p {
+    color: var(--ink-mute);
+    font-size: 13px;
+    margin-top: 16px;
+    max-width: 280px;
+    line-height: 1.6;
+  }
+  .footer-col h4 {
+    font-family: var(--ff-display);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a {
+    color: var(--ink-mute);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--teal-bright); }
+  .footer-bot {
+    padding-top: 24px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--ink-mute);
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .footer-bot .socials {
+    display: flex;
+    gap: 8px;
+  }
+  .footer-bot .socials a {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--glass);
+    border: 1px solid var(--glass-border);
+    display: flex; align-items: center; justify-content: center;
+    color: var(--ink-dim);
+    transition: all 0.2s;
+  }
+  .footer-bot .socials a:hover {
+    background: rgba(77,182,172,0.15);
+    border-color: rgba(77,182,172,0.3);
+    color: var(--teal-bright);
+  }
+
+  /* fade-in on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---------- PRINT ---------- */
+  @media print {
+    @page {
+      size: A4 portrait;
+      margin: 0;
+    }
+    html, body {
+      background: #0d1620 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+
+    /* hide sticky nav so it doesn't repeat */
+    .nav-wrap { display: none !important; }
+
+    /* keep floating decoration but lighten so it doesn't bleed */
+    .aurora-blob { opacity: 0.35 !important; filter: blur(60px) !important; }
+
+    /* container width on print */
+    .container { max-width: 100% !important; padding: 0 24px !important; }
+
+    /* tighter sections */
+    section { padding: 40px 0 !important; break-inside: avoid; }
+    .hero {
+      min-height: auto !important;
+      padding: 50px 0 40px !important;
+      break-after: page;
+    }
+    .hero-mock {
+      transform: none !important;
+    }
+    .cta-section {
+      padding: 50px 0 !important;
+      break-before: page;
+    }
+
+    /* section page-breaks */
+    #caracteristicas { break-before: page; }
+    #modulos { break-before: page; }
+    .stats { break-before: page; break-inside: avoid; }
+    #roles { break-after: page; }
+    #planes { break-before: page; }
+    #faq { break-before: page; }
+
+    /* prevent cards from being split */
+    .feature, .bento-card, .role, .testimonial, .plan, details.faq, .stats-card, .cta-card {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    /* grids — keep but shrink gaps */
+    .features-grid, .roles-grid, .testimonials, .pricing { gap: 12px !important; }
+    .bento { gap: 12px !important; }
+
+    /* preserve glass look — backdrop-filter doesn't print well, simulate with solid */
+    .glass, .glass-strong, .nav, .feature, .bento-card, .role, .testimonial, .plan, details.faq, .stats-card, .cta-card, .hero-mock, .floating-card {
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+      background: rgba(255,255,255,0.06) !important;
+      border: 1px solid rgba(255,255,255,0.14) !important;
+      box-shadow: none !important;
+    }
+    .glass-strong, .stats-card, .cta-card, .plan.featured {
+      background: rgba(255,255,255,0.09) !important;
+    }
+    .plan.featured {
+      background: linear-gradient(180deg, rgba(77,182,172,0.15), rgba(255,255,255,0.08)) !important;
+    }
+
+    /* gradients on buttons + accents — force visible */
+    .btn-primary {
+      background: linear-gradient(135deg, #5FD4C8 0%, #2E9E94 100%) !important;
+      color: #0d1620 !important;
+    }
+
+    /* gradient text — keep working in print */
+    h1 .accent, .section-head h2 .accent {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    /* details/FAQ: force-open for printing */
+    details.faq { background: rgba(255,255,255,0.06) !important; }
+    details.faq[open] summary .plus { transform: rotate(45deg) !important; }
+    details.faq > .ans { display: block !important; }
+
+    /* footer */
+    footer { break-before: page; padding: 30px 0 !important; }
+
+    /* ensure body fills printed background */
+    .aurora { position: absolute !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- background layers -->
+<div class="aurora"></div>
+<div class="aurora-blob b1"></div>
+<div class="aurora-blob b2"></div>
+<div class="aurora-blob b3"></div>
+
+<!-- ============== NAV ============== -->
+<div class="nav-wrap" data-screen-label="Nav">
+  <nav class="nav glass-strong">
+    <a class="nav-brand" href="#top">
+      <img src="assets/logo.png" alt="AMS logo" />
+      <span>AMS<small>Academic Manager</small></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#caracteristicas">Características</a></li>
+      <li><a href="#modulos">Módulos</a></li>
+      <li><a href="#roles">Roles</a></li>
+      <li><a href="#planes">Planes</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a href="#" class="btn btn-primary" id="ingresarBtn" target="_blank" rel="noopener">
+        Ingresar al sistema
+        <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </nav>
+</div>
+
+<!-- ============== HERO ============== -->
+<section class="hero" id="top" data-screen-label="01 Hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy reveal">
+        <div class="eyebrow">
+          <span class="pulse"></span>
+          Versión 4.2 · Disponible ahora
+        </div>
+        <h1 class="hero-title">
+          La gestión académica, <span class="accent">simple y conectada</span>.
+        </h1>
+        <p class="hero-sub">
+          AMS centraliza matrículas, calificaciones, asistencia y comunicaciones en una sola plataforma. Diseñada para instituciones que quieren menos papeleo y más aprendizaje.
+        </p>
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary btn-lg" id="ingresarBtn2" target="_blank" rel="noopener">
+            Ingresar al sistema
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#caracteristicas" class="btn btn-ghost btn-lg">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Ver demo guiada
+          </a>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <strong>+120</strong>
+            <span>Instituciones</span>
+          </div>
+          <div class="hero-meta-item">
+            <strong>85K</strong>
+            <span>Estudiantes activos</span>
+          </div>
+          <div class="hero-meta-item">
+            <strong>99.9%</strong>
+            <span>Uptime SLA</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard mock -->
+      <div class="reveal">
+        <div class="hero-mock glass-strong">
+          <div class="mock-bar">
+            <span class="dot" style="background:#ff6058"></span>
+            <span class="dot" style="background:#ffbd2e"></span>
+            <span class="dot" style="background:#28c941"></span>
+            <span class="url">ams.edu / panel · curso 2025-26</span>
+          </div>
+          <div class="mock-content">
+            <div class="mock-side">
+              <div class="mock-side-item active">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+                Panel
+              </div>
+              <div class="mock-side-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> Estudiantes</div>
+              <div class="mock-side-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg> Cursos</div>
+              <div class="mock-side-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg> Calendario</div>
+              <div class="mock-side-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg> Reportes</div>
+            </div>
+            <div class="mock-main">
+              <div class="mock-stats">
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Asistencia</div>
+                  <div class="mock-stat-val up">94.6%</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Promedio</div>
+                  <div class="mock-stat-val">8.2</div>
+                </div>
+                <div class="mock-stat">
+                  <div class="mock-stat-label">Cursos</div>
+                  <div class="mock-stat-val">42</div>
+                </div>
+              </div>
+              <div class="mock-chart">
+                <div class="mock-chart-title">Rendimiento — últimos 6 meses</div>
+                <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+                  <defs>
+                    <linearGradient id="grad" x1="0" x2="0" y1="0" y2="1">
+                      <stop offset="0%" stop-color="#4DB6AC" stop-opacity="0.5"/>
+                      <stop offset="100%" stop-color="#4DB6AC" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M 0 60 L 40 50 L 80 55 L 120 35 L 160 40 L 200 22 L 240 28 L 240 80 L 0 80 Z" fill="url(#grad)" />
+                  <path d="M 0 60 L 40 50 L 80 55 L 120 35 L 160 40 L 200 22 L 240 28" stroke="#5FD4C8" stroke-width="2" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+                  <circle cx="200" cy="22" r="3" fill="#5FD4C8"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-card glass-strong top">
+          <div class="icon">✓</div>
+          <div class="meta">
+            <strong>Calificación enviada</strong>
+            <span>3.º A · Matemáticas</span>
+          </div>
+        </div>
+        <div class="floating-card glass-strong bot">
+          <div class="icon">12</div>
+          <div class="meta">
+            <strong>Nuevas matrículas</strong>
+            <span>en los últimos 7 días</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURES ============== -->
+<section id="caracteristicas" data-screen-label="02 Features">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Por qué AMS</div>
+      <h2>Todo lo que tu institución necesita, <span class="accent">en un solo lugar</span></h2>
+      <p>Elimina hojas de cálculo, archivos sueltos y mensajes en grupos de WhatsApp. AMS unifica el ciclo académico completo.</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </div>
+        <h3>Matrícula en línea</h3>
+        <p>Inscripción digital con pagos integrados, validación automática de documentos y firma electrónica de acudientes.</p>
+      </div>
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
+        </div>
+        <h3>Reportes en tiempo real</h3>
+        <p>Tableros de rendimiento por curso, materia y estudiante. Exportación a PDF y Excel con un clic.</p>
+      </div>
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <h3>Comunicación directa</h3>
+        <p>Mensajería interna entre docentes, estudiantes y acudientes, con notificaciones push y por correo.</p>
+      </div>
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Seguridad institucional</h3>
+        <p>Roles granulares, autenticación 2FA, copias de seguridad cifradas y cumplimiento con normativa local.</p>
+      </div>
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Multi-dispositivo</h3>
+        <p>Acceso desde web, tablet y móvil. Sincronización automática y modo offline para zonas con baja conectividad.</p>
+      </div>
+      <div class="feature glass reveal">
+        <div class="icon-wrap">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09a1.65 1.65 0 00-1-1.51 1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06a1.65 1.65 0 00.33-1.82 1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09a1.65 1.65 0 001.51-1 1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06a1.65 1.65 0 001.82.33h0a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51h0a1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06a1.65 1.65 0 00-.33 1.82v0a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        </div>
+        <h3>Personalización total</h3>
+        <p>Adapta planes de estudio, escalas de calificación y períodos académicos al modelo de tu institución.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== MODULES (BENTO) ============== -->
+<section id="modulos" data-screen-label="03 Modules">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Módulos integrados</div>
+      <h2>Una plataforma. <span class="accent">Cinco módulos esenciales.</span></h2>
+      <p>Cada módulo se conecta con los demás para mantener tus datos coherentes y siempre actualizados.</p>
+    </div>
+
+    <div class="bento">
+      <div class="bento-card glass span-2 reveal">
+        <span class="tag">— 01 / Calificaciones</span>
+        <h3>Boletines automáticos y libreta de notas inteligente</h3>
+        <p>Captura calificaciones por período, calcula promedios ponderados y genera boletines listos para entregar a los acudientes.</p>
+        <div class="bento-visual">
+          <div class="grades">
+            <div class="row">
+              <div class="name">Ana M. Pérez</div>
+              <div class="cell g-a">9.4</div>
+              <div class="cell g-a">9.1</div>
+              <div class="cell g-b">8.7</div>
+              <div class="cell g-a">9.2</div>
+            </div>
+            <div class="row">
+              <div class="name">Luis F. Gómez</div>
+              <div class="cell g-b">8.2</div>
+              <div class="cell g-c">7.5</div>
+              <div class="cell g-b">8.0</div>
+              <div class="cell g-b">8.3</div>
+            </div>
+            <div class="row">
+              <div class="name">Sofía Restrepo</div>
+              <div class="cell g-a">9.6</div>
+              <div class="cell g-a">9.3</div>
+              <div class="cell g-a">9.5</div>
+              <div class="cell g-a">9.8</div>
+            </div>
+            <div class="row">
+              <div class="name">Diego Quintero</div>
+              <div class="cell g-c">7.1</div>
+              <div class="cell g-b">8.0</div>
+              <div class="cell g-c">7.4</div>
+              <div class="cell g-b">8.1</div>
+            </div>
+            <div class="row">
+              <div class="name">Camila Ruiz</div>
+              <div class="cell g-a">9.0</div>
+              <div class="cell g-b">8.6</div>
+              <div class="cell g-a">9.1</div>
+              <div class="cell g-a">9.3</div>
+            </div>
+            <div class="row">
+              <div class="name">Mateo Cárdenas</div>
+              <div class="cell g-b">8.4</div>
+              <div class="cell g-b">8.2</div>
+              <div class="cell g-c">7.8</div>
+              <div class="cell g-b">8.5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-card glass reveal">
+        <span class="tag">— 02 / Asistencia</span>
+        <h3>Control diario al instante</h3>
+        <p>Registra asistencia desde la app o el panel web. Alertas automáticas a acudientes ante inasistencias.</p>
+        <div class="bento-visual">
+          <div style="display:flex; gap:14px; align-items:center; width:100%;">
+            <div style="position:relative; width:90px; height:90px;">
+              <svg viewBox="0 0 36 36" style="width:90px; height:90px; transform:rotate(-90deg);">
+                <circle cx="18" cy="18" r="15" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="3"/>
+                <circle cx="18" cy="18" r="15" fill="none" stroke="#5FD4C8" stroke-width="3" stroke-dasharray="89,100" stroke-linecap="round"/>
+              </svg>
+              <div style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--ff-display); font-weight:600; font-size:18px; color:var(--teal-bright);">94%</div>
+            </div>
+            <div style="font-size:12px; color:var(--ink-dim); line-height:1.6;">
+              <div><strong style="color:var(--ink);">312</strong> presentes</div>
+              <div><strong style="color:var(--ink);">14</strong> ausentes</div>
+              <div><strong style="color:var(--ink);">6</strong> justificados</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-card glass reveal">
+        <span class="tag">— 03 / Calendario</span>
+        <h3>Eventos y planificación</h3>
+        <p>Visualiza exámenes, entregas y reuniones. Sincronización con Google Calendar y Outlook.</p>
+        <div class="bento-visual">
+          <div class="cal" id="miniCal"></div>
+        </div>
+      </div>
+
+      <div class="bento-card glass reveal">
+        <span class="tag">— 04 / Matrículas</span>
+        <h3>Crecimiento sostenido</h3>
+        <p>Visualiza el flujo de matrículas mes a mes y proyecta tu capacidad institucional.</p>
+        <div class="bento-visual">
+          <div class="bars">
+            <div class="bar" style="height:30%" data-month="Ago"></div>
+            <div class="bar" style="height:48%" data-month="Sep"></div>
+            <div class="bar" style="height:55%" data-month="Oct"></div>
+            <div class="bar" style="height:70%" data-month="Nov"></div>
+            <div class="bar" style="height:62%" data-month="Dic"></div>
+            <div class="bar" style="height:85%" data-month="Ene"></div>
+            <div class="bar" style="height:78%" data-month="Feb"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bento-card glass reveal">
+        <span class="tag">— 05 / Pagos</span>
+        <h3>Cartera al día</h3>
+        <p>Gestión de pagos, recordatorios automáticos y conciliación bancaria.</p>
+        <div class="bento-visual">
+          <div style="width:100%; display:flex; flex-direction:column; gap:6px; font-size:11px;">
+            <div style="display:flex; justify-content:space-between; padding:8px 10px; background:rgba(77,182,172,0.12); border:1px solid rgba(77,182,172,0.3); border-radius:8px;">
+              <span style="color:var(--ink-dim);">Matrícula · Marzo</span>
+              <span style="color:var(--teal-bright); font-weight:600;">$ 1.250.000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:8px 10px; background:rgba(0,0,0,0.2); border:1px solid var(--glass-border); border-radius:8px;">
+              <span style="color:var(--ink-dim);">Pensión · Abril</span>
+              <span style="color:var(--ink); font-weight:600;">$ 850.000</span>
+            </div>
+            <div style="display:flex; justify-content:space-between; padding:8px 10px; background:rgba(255,193,107,0.10); border:1px solid rgba(255,193,107,0.25); border-radius:8px;">
+              <span style="color:var(--ink-dim);">Pendiente · Mayo</span>
+              <span style="color:#ffd28a; font-weight:600;">$ 320.000</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== STATS BANNER ============== -->
+<section class="stats" data-screen-label="04 Stats">
+  <div class="container">
+    <div class="stats-card glass-strong reveal">
+      <div class="stat-item">
+        <strong>+120</strong>
+        <span>Instituciones aliadas</span>
+      </div>
+      <div class="stat-item">
+        <strong>85K</strong>
+        <span>Estudiantes activos</span>
+      </div>
+      <div class="stat-item">
+        <strong>3.4M</strong>
+        <span>Calificaciones registradas</span>
+      </div>
+      <div class="stat-item">
+        <strong>99.9%</strong>
+        <span>Disponibilidad anual</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== ROLES ============== -->
+<section id="roles" data-screen-label="05 Roles">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Pensado para todos</div>
+      <h2>Una experiencia <span class="accent">para cada rol</span></h2>
+      <p>Cada usuario ve lo que necesita, cuando lo necesita. Sin curva de aprendizaje.</p>
+    </div>
+
+    <div class="roles-grid">
+      <div class="role glass reveal">
+        <div class="avatar">D</div>
+        <h3>Docentes</h3>
+        <div class="lead">Más tiempo para enseñar</div>
+        <p style="color:var(--ink-dim); font-size:14px;">Captura notas, controla asistencia y comunícate con acudientes desde un solo lugar.</p>
+        <ul>
+          <li>Libreta de calificaciones</li>
+          <li>Planeación de clases</li>
+          <li>Tareas y rúbricas</li>
+          <li>Mensajería con acudientes</li>
+        </ul>
+      </div>
+      <div class="role glass reveal">
+        <div class="avatar">E</div>
+        <h3>Estudiantes</h3>
+        <div class="lead">Su vida académica clara</div>
+        <p style="color:var(--ink-dim); font-size:14px;">Consulta horarios, calificaciones y entregas pendientes desde el móvil.</p>
+        <ul>
+          <li>Horario personalizado</li>
+          <li>Boletín digital</li>
+          <li>Entrega de tareas online</li>
+          <li>Notificaciones de eventos</li>
+        </ul>
+      </div>
+      <div class="role glass reveal">
+        <div class="avatar">A</div>
+        <h3>Administración</h3>
+        <div class="lead">Visión 360° del colegio</div>
+        <p style="color:var(--ink-dim); font-size:14px;">Reportes financieros, matrículas y rendimiento institucional en tiempo real.</p>
+        <ul>
+          <li>Tableros ejecutivos</li>
+          <li>Gestión de cartera</li>
+          <li>Reportes regulatorios</li>
+          <li>Configuración avanzada</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== TESTIMONIALS ============== -->
+<section data-screen-label="06 Testimonials">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Casos reales</div>
+      <h2>Instituciones que <span class="accent">ya transformaron</span> su gestión</h2>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial glass reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>Pasamos de cerrar boletines en tres semanas a cerrarlos en tres días. El equipo docente recuperó el tiempo que antes perdía en planillas.</blockquote>
+        <div class="testimonial-author">
+          <div class="av">CR</div>
+          <div>
+            <strong>Carolina Reyes</strong>
+            <span>Rectora · Colegio San Andrés</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial glass reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>La integración con pagos fue lo que nos convenció. Reducimos la cartera vencida en un 38% durante el primer semestre.</blockquote>
+        <div class="testimonial-author">
+          <div class="av">JM</div>
+          <div>
+            <strong>Javier Molina</strong>
+            <span>Director Financiero · IE Los Pinos</span>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial glass reveal">
+        <div class="quote-mark">"</div>
+        <blockquote>Los acudientes ya no llaman pidiendo el reporte: lo abren en su móvil. Nuestra recepción agradece el cambio cada día.</blockquote>
+        <div class="testimonial-author">
+          <div class="av">PD</div>
+          <div>
+            <strong>Patricia Delgado</strong>
+            <span>Coordinadora · Liceo Moderno</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== PRICING ============== -->
+<section id="planes" data-screen-label="07 Pricing">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Planes</div>
+      <h2>Elige el plan que <span class="accent">crece contigo</span></h2>
+      <p>Sin contratos amarrados. Cambia de plan cuando quieras. Soporte incluido en todos los niveles.</p>
+    </div>
+
+    <div class="pricing">
+      <div class="plan glass reveal">
+        <h3>Esencial</h3>
+        <div class="desc">Para colegios pequeños que arrancan</div>
+        <div class="price">
+          <strong>$199</strong><span>/ mes</span>
+        </div>
+        <ul>
+          <li>Hasta 200 estudiantes</li>
+          <li>Módulo de calificaciones</li>
+          <li>Asistencia digital</li>
+          <li>Soporte por correo</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Empezar gratis</a>
+      </div>
+      <div class="plan glass-strong featured reveal">
+        <span class="plan-badge">Más popular</span>
+        <h3>Profesional</h3>
+        <div class="desc">Para instituciones en crecimiento</div>
+        <div class="price">
+          <strong>$449</strong><span>/ mes</span>
+        </div>
+        <ul>
+          <li>Hasta 1.000 estudiantes</li>
+          <li>Todos los módulos</li>
+          <li>Pagos en línea integrados</li>
+          <li>App móvil con marca propia</li>
+          <li>Soporte prioritario</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Probar 30 días</a>
+      </div>
+      <div class="plan glass reveal">
+        <h3>Institucional</h3>
+        <div class="desc">Para redes y multi-sede</div>
+        <div class="price">
+          <strong>A medida</strong>
+        </div>
+        <ul>
+          <li>Estudiantes ilimitados</li>
+          <li>Multi-sede y multi-currículo</li>
+          <li>Integraciones API dedicadas</li>
+          <li>Gerente de cuenta asignado</li>
+          <li>SLA y onboarding presencial</li>
+        </ul>
+        <a href="#" class="btn btn-ghost">Hablar con ventas</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAQ ============== -->
+<section id="faq" data-screen-label="08 FAQ">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="pulse"></span> Dudas comunes</div>
+      <h2>Preguntas <span class="accent">frecuentes</span></h2>
+    </div>
+    <div class="faq-list">
+      <details class="faq glass">
+        <summary>¿Cuánto tarda la implementación?<span class="plus">+</span></summary>
+        <div class="ans">El onboarding estándar toma entre 2 y 4 semanas, dependiendo del tamaño de la institución y el volumen de datos a migrar. Un consultor te acompaña en todo el proceso.</div>
+      </details>
+      <details class="faq glass">
+        <summary>¿Pueden migrar nuestros datos actuales?<span class="plus">+</span></summary>
+        <div class="ans">Sí. Importamos desde Excel, Google Sheets y la mayoría de sistemas académicos del mercado. Validamos cada registro antes de pasar a producción.</div>
+      </details>
+      <details class="faq glass">
+        <summary>¿Funciona sin conexión a internet?<span class="plus">+</span></summary>
+        <div class="ans">La app móvil tiene modo offline para captura de calificaciones y asistencia. Los datos se sincronizan automáticamente cuando recuperas conexión.</div>
+      </details>
+      <details class="faq glass">
+        <summary>¿Qué pasa con la seguridad de los datos?<span class="plus">+</span></summary>
+        <div class="ans">Todos los datos se almacenan cifrados en servidores con certificación ISO 27001. Realizamos copias de seguridad diarias y cumplimos con la normativa local de protección de datos.</div>
+      </details>
+      <details class="faq glass">
+        <summary>¿Puedo personalizar las escalas de calificación?<span class="plus">+</span></summary>
+        <div class="ans">Sí. Puedes definir escalas numéricas, alfabéticas o por niveles de desempeño, y configurar diferentes ponderaciones por período o materia.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CTA ============== -->
+<section class="cta-section" data-screen-label="09 CTA">
+  <div class="container">
+    <div class="cta-card glass-strong reveal">
+      <div class="content">
+        <h2>Listos para entrar al sistema</h2>
+        <p>Si ya tienes credenciales, accede directamente al panel de gestión académica. ¿Aún no tienes cuenta? Habla con nuestro equipo y la activamos para tu institución.</p>
+        <div class="cta-actions">
+          <a href="#" class="btn btn-primary btn-lg" id="ingresarBtn3" target="_blank" rel="noopener">
+            Ingresar al sistema
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" class="btn btn-ghost btn-lg">
+            Solicitar demostración
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer data-screen-label="10 Footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a class="nav-brand" href="#top">
+          <img src="assets/logo.png" alt="AMS logo" />
+          <span>AMS<small>Academic Manager</small></span>
+        </a>
+        <p>La plataforma integral de gestión académica para instituciones educativas modernas.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Producto</h4>
+        <ul>
+          <li><a href="#caracteristicas">Características</a></li>
+          <li><a href="#modulos">Módulos</a></li>
+          <li><a href="#planes">Planes</a></li>
+          <li><a href="#">Novedades</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="#">Nosotros</a></li>
+          <li><a href="#">Casos de éxito</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Soporte</h4>
+        <ul>
+          <li><a href="#">Centro de ayuda</a></li>
+          <li><a href="#">Documentación</a></li>
+          <li><a href="#">Estado del servicio</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>© 2026 AMS · Sistema de Gestión Académica. Todos los derechos reservados.</span>
+      <div class="socials">
+        <a href="#" aria-label="LinkedIn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg></a>
+        <a href="#" aria-label="Twitter"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // build mini calendar (current month, today highlighted, a few events)
+  (function buildCal() {
+    const cal = document.getElementById('miniCal');
+    if (!cal) return;
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = today.getMonth();
+    const first = new Date(year, month, 1);
+    const startWd = (first.getDay() + 6) % 7; // Mon=0
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const events = new Set([3, 9, 15, 22, 27]);
+    const todayDate = today.getDate();
+    const headers = ['L','M','M','J','V','S','D'];
+    headers.forEach(h => {
+      const el = document.createElement('div');
+      el.className = 'day';
+      el.style.background = 'transparent';
+      el.style.border = 'none';
+      el.style.color = 'var(--ink-mute)';
+      el.style.fontSize = '10px';
+      el.textContent = h;
+      cal.appendChild(el);
+    });
+    for (let i = 0; i < startWd; i++) {
+      const empty = document.createElement('div');
+      empty.className = 'day';
+      empty.style.background = 'transparent';
+      empty.style.border = 'none';
+      cal.appendChild(empty);
+    }
+    for (let d = 1; d <= daysInMonth; d++) {
+      const el = document.createElement('div');
+      el.className = 'day';
+      el.textContent = d;
+      if (events.has(d)) el.classList.add('has-event');
+      if (d === todayDate) el.classList.add('today');
+      cal.appendChild(el);
+    }
+  })();
+
+  // reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // wire all "ingresar al sistema" buttons; placeholder URL — replace with real one
+  const SYSTEM_URL = 'https://app.ams.edu/login'; // TODO: replace with real software URL
+  ['ingresarBtn','ingresarBtn2','ingresarBtn3'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.href = SYSTEM_URL;
+  });
+
+  // smooth-scroll for in-page links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const id = a.getAttribute('href');
+      if (id && id.length > 1 && document.querySelector(id)) {
+        e.preventDefault();
+        document.querySelector(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  // open all FAQs for print
+  document.querySelectorAll('details.faq').forEach(d => d.open = true);
+  // force-reveal all sections (no scroll-trigger needed in print)
+  document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+
+  // auto-print after fonts + layout settle
+  (async () => {
+    try { if (document.fonts && document.fonts.ready) await document.fonts.ready; } catch(e) {}
+    await new Promise(r => setTimeout(r, 600));
+    window.print();
+  })();
+</script>
+
+</body>
+</html>
