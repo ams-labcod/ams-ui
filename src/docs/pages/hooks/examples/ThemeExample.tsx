@@ -1,5 +1,5 @@
 import { Moon, Sun } from 'lucide-react'
-import { Button, useTheme } from '@ams/ui'
+import { Button, useTheme } from '@juanarenas312002/ams-ui'
 
 export default function ThemeExample() {
   const { theme, setTheme } = useTheme()

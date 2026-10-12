@@ -2,7 +2,7 @@
 // se renderiza y su código fuente se muestra tal cual (import ?raw), así que
 // el código de la documentación no puede desincronizarse del que funciona.
 import { useState, type ComponentType, type ReactNode } from 'react'
-import { Input, Select, Switch, Tabs, TabsContent, TabsList, TabsTrigger, FormField } from '@ams/ui'
+import { Input, Select, Switch, Tabs, TabsContent, TabsList, TabsTrigger, FormField } from '@juanarenas312002/ams-ui'
 import { cn } from '../lib/cn'
 import { CodeBlock, DocHeader, DocSection, DoDont, SpecTable } from './kit'
 import { findEntry } from './registry'

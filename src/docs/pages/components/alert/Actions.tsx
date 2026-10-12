@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Alert, Button } from '@ams/ui'
+import { Alert, Button } from '@juanarenas312002/ams-ui'
 
 export default function Actions() {
   const [visible, setVisible] = useState(true)

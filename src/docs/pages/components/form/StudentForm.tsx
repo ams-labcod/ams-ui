@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
-import { Alert, Button, Checkbox, DatePicker, Form, FormItem, Input, RadioGroup, Select, toast } from '@ams/ui'
+import { Alert, Button, Checkbox, DatePicker, Form, FormItem, Input, RadioGroup, Select, toast } from '@juanarenas312002/ams-ui'
 
 const schema = z.object({
   name: z.string().trim().min(3, 'Escribe el nombre completo (mínimo 3 letras).'),

@@ -10,7 +10,7 @@ export default function ScrollAreaDoc() {
     <ComponentDoc
       slug="scroll-area"
       description="Zona con desplazamiento propio y barras finas del color de la marca, iguales en Windows, macOS y móvil. Útil en paneles de altura fija como listas de actividad."
-      importCode={`import { ScrollArea } from '@ams/ui'`}
+      importCode={`import { ScrollArea } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Notifications', title: 'Actividad reciente', description: 'Haz Tab hasta la lista y usa las flechas para desplazarla.' }]}
       api={[

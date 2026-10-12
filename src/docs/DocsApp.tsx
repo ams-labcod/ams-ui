@@ -15,7 +15,7 @@ import {
   Tooltip,
   useHotkey,
   useTheme,
-} from '@ams/ui'
+} from '@juanarenas312002/ams-ui'
 import { cn } from '../lib/cn'
 import { DocHeader } from './kit'
 import { categories, findEntry, normalize, registry, type DocEntry } from './registry'

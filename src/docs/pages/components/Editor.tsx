@@ -10,7 +10,7 @@ export default function EditorDoc() {
     <ComponentDoc
       slug="editor"
       description="Área de texto con barra de formato que escribe Markdown: títulos, negrita, listas, citas, código y enlaces. Pensado para mensajes y observaciones, no para documentos largos."
-      importCode={`import { Editor } from '@ams/ui'`}
+      importCode={`import { Editor } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Message', title: 'Mensaje a acudientes', description: 'Selecciona texto y pulsa un botón o usa Ctrl+B, Ctrl+I o Ctrl+K. Volver a aplicar negrita, cursiva o código lo quita.' }]}
       api={[

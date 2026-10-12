@@ -13,7 +13,7 @@ export default function DropdownMenuDoc() {
       importCode={`import {
   DropdownMenu, DropdownMenuTrigger, DropdownMenuContent,
   DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator,
-} from '@ams/ui'`}
+} from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'RowActions', title: 'Acciones de una fila', description: 'Etiqueta con el nombre del registro, ítem deshabilitado y acción destructiva separada al final.' }]}
       api={[

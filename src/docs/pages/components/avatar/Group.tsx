@@ -1,4 +1,4 @@
-import { Avatar } from '@ams/ui'
+import { Avatar } from '@juanarenas312002/ams-ui'
 
 const teachers = ['Carolina Reyes', 'Javier Molina', 'Patricia Delgado', 'Diego Quintero']
 

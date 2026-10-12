@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Button, Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger, FormField, Input, Textarea } from '@ams/ui'
+import { Button, Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger, FormField, Input, Textarea } from '@juanarenas312002/ams-ui'
 
 export default function Form() {
   const [open, setOpen] = useState(false)

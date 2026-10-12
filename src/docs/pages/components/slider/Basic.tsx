@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { formatCurrency, Slider } from '@ams/ui'
+import { formatCurrency, Slider } from '@juanarenas312002/ams-ui'
 
 export default function Basic() {
   const [range, setRange] = useState<[number, number]>([6, 9])

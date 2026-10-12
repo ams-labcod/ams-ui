@@ -10,7 +10,7 @@ export default function TextareaDoc() {
     <ComponentDoc
       slug="textarea"
       description="Campo de texto de varias líneas para observaciones, mensajes a acudientes o justificaciones. Comparte estilos y estados con Input."
-      importCode={`import { FormField, Textarea } from '@ams/ui'`}
+      importCode={`import { FormField, Textarea } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Con contador', description: 'Un contador en la descripción ayuda cuando hay un límite de caracteres.' },

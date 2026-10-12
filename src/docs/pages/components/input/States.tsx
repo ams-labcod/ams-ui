@@ -1,4 +1,4 @@
-import { FormField, Input } from '@ams/ui'
+import { FormField, Input } from '@juanarenas312002/ams-ui'
 
 export default function States() {
   return (

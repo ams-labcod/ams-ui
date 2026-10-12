@@ -1,5 +1,5 @@
 import { CalendarX } from 'lucide-react'
-import { EmptyState, Table, TableBody, TableEmpty, TableHead, TableHeader, TableRow } from '@ams/ui'
+import { EmptyState, Table, TableBody, TableEmpty, TableHead, TableHeader, TableRow } from '@juanarenas312002/ams-ui'
 
 export default function Empty() {
   return (

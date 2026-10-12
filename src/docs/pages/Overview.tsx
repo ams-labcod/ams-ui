@@ -21,13 +21,13 @@ export default function Overview() {
         description="Componentes de React para construir las pantallas de AMS, el sistema de gestión académica. Comparten los colores, la tipografía y el vidrio de la marca, funcionan con teclado y vienen en tema oscuro y claro."
       />
 
-      <DocSection title="Instalación" description="En un proyecto de React 19 con Vite y Tailwind CSS v4. Mientras no se publique en un registro, instala el paquete desde la carpeta del repositorio (o desde el .tgz de npm pack).">
+      <DocSection title="Instalación" description="En un proyecto de React 19 con Vite y Tailwind CSS v4:">
         <CodeBlock
-          code={`npm i ../AMS-LIBRARY-FRONTEND   # o: npm i ams-ui-0.0.1.tgz
+          code={`npm i @juanarenas312002/ams-ui
 npm i -D tailwindcss @tailwindcss/vite`}
         />
         <p className="mt-4 max-w-prose text-sm text-fg-muted">
-          El resto de dependencias (Radix, cmdk, recharts, TanStack Table, react-hook-form, zod…) se instalan solas con el paquete. Para generar el paquete: <Code>npm run build:lib</Code>.
+          El resto de dependencias (Radix, cmdk, recharts, TanStack Table, react-hook-form, zod…) se instalan solas con el paquete.
         </p>
       </DocSection>
 
@@ -35,9 +35,9 @@ npm i -D tailwindcss @tailwindcss/vite`}
         <CodeBlock
           label="CSS"
           code={`/* src/index.css */
-@import '@ams/ui/tokens.css';
+@import '@juanarenas312002/ams-ui/tokens.css';
 /* Tailwind debe ver las clases que usan los componentes: */
-@source '../node_modules/@ams/ui/dist-lib';`}
+@source '../node_modules/@juanarenas312002/ams-ui/dist-lib';`}
         />
         <p className="mt-5 max-w-prose text-sm text-fg-muted">
           Carga las fuentes Space Grotesk e Inter en tu <Code>index.html</Code>:
@@ -55,7 +55,7 @@ npm i -D tailwindcss @tailwindcss/vite`}
         description="El tema lo decide el atributo data-theme. Sin atributo se usa el oscuro, que es el original de la marca. Puedes fijarlo en <html> o en cualquier contenedor para mostrar una zona con el otro tema."
       >
         <CodeBlock
-          code={`import { useTheme } from '@ams/ui'
+          code={`import { useTheme } from '@juanarenas312002/ams-ui'
 
 function ThemeButton() {
   const { theme, toggleTheme } = useTheme()

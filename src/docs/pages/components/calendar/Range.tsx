@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Calendar, formatDate, type DateRange } from '@ams/ui'
+import { Calendar, formatDate, type DateRange } from '@juanarenas312002/ams-ui'
 
 const now = new Date()
 

@@ -1,4 +1,4 @@
-import { BarChart } from '@ams/ui'
+import { BarChart } from '@juanarenas312002/ams-ui'
 import { enrollmentByMonth } from '../../../sample-data'
 
 export default function Bars() {

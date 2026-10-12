@@ -1,4 +1,4 @@
-import { cn, formatBytes, formatCurrency, formatDate, formatNumber } from '@ams/ui'
+import { cn, formatBytes, formatCurrency, formatDate, formatNumber } from '@juanarenas312002/ams-ui'
 
 const archived = false
 

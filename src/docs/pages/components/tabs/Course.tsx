@@ -1,5 +1,5 @@
 import { CalendarDays, ClipboardCheck, GraduationCap } from 'lucide-react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@ams/ui'
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@juanarenas312002/ams-ui'
 
 export default function Course() {
   return (

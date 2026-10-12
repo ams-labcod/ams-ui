@@ -1,5 +1,5 @@
 import { FileDown, Mail, Printer } from 'lucide-react'
-import { Button, Tooltip } from '@ams/ui'
+import { Button, Tooltip } from '@juanarenas312002/ams-ui'
 
 export default function IconButtons() {
   return (

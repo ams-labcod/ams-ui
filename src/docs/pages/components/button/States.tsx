@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@ams/ui'
+import { Button } from '@juanarenas312002/ams-ui'
 
 export default function States() {
   const [saving, setSaving] = useState(false)

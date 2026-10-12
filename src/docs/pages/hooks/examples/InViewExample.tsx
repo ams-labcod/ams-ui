@@ -1,4 +1,4 @@
-import { ScrollArea, Skeleton, useInView } from '@ams/ui'
+import { ScrollArea, Skeleton, useInView } from '@juanarenas312002/ams-ui'
 
 function LazyCard({ n }: { n: number }) {
   // Carga el contenido solo cuando la tarjeta entra en pantalla.

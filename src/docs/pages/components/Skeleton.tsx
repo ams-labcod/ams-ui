@@ -10,7 +10,7 @@ export default function SkeletonDoc() {
     <ComponentDoc
       slug="skeleton"
       description="Silueta del contenido mientras carga. Mantiene la forma de la página para que nada salte cuando llegan los datos."
-      importCode={`import { Skeleton } from '@ams/ui'`}
+      importCode={`import { Skeleton } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'StudentCard', title: 'Tarjeta de estudiante', description: 'Imita el avatar y las dos líneas de texto que vendrán.' }]}
       api={[{ component: 'Skeleton', props: [{ name: 'className', type: 'string', description: 'Tamaño y forma (h-4 w-1/2, size-14 rounded-full…).' }], extends: 'Acepta los atributos de <div>.' }]}

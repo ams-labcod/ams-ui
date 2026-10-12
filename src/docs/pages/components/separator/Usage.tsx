@@ -1,4 +1,4 @@
-import { Separator } from '@ams/ui'
+import { Separator } from '@juanarenas312002/ams-ui'
 
 export default function Usage() {
   return (

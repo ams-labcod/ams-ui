@@ -10,7 +10,7 @@ export default function AlertDialogDoc() {
     <ComponentDoc
       slug="alert-dialog"
       description="Confirmación obligatoria antes de una acción que no se puede deshacer. A diferencia de Dialog, no se cierra con clic fuera ni tiene X: hay que elegir."
-      importCode={`import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogCancel, AlertDialogAction } from '@ams/ui'`}
+      importCode={`import { AlertDialog, AlertDialogTrigger, AlertDialogContent, AlertDialogCancel, AlertDialogAction } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'DeletePeriod', title: 'Acción destructiva', description: 'El título pregunta, la descripción cuenta la consecuencia con cifras y el botón repite el verbo.' }]}
       api={[

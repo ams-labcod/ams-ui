@@ -1,4 +1,4 @@
-import { Button, Sheet, SheetContent, SheetTrigger, type SheetContentProps } from '@ams/ui'
+import { Button, Sheet, SheetContent, SheetTrigger, type SheetContentProps } from '@juanarenas312002/ams-ui'
 
 const sides: { side: NonNullable<SheetContentProps['side']>; label: string }[] = [
   { side: 'left', label: 'Izquierda' },

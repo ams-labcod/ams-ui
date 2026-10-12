@@ -1,4 +1,4 @@
-import { Badge, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@ams/ui'
+import { Badge, Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@juanarenas312002/ams-ui'
 
 const students = [
   { name: 'Ana M. Pérez', p1: 9.4, p2: 9.1, p3: 8.7 },

@@ -1,4 +1,4 @@
-import { Badge, useMediaQuery } from '@ams/ui'
+import { Badge, useMediaQuery } from '@juanarenas312002/ams-ui'
 
 export default function MediaQueryExample() {
   const desktop = useMediaQuery('(min-width: 55rem)')

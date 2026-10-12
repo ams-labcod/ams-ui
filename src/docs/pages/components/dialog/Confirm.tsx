@@ -1,4 +1,4 @@
-import { Button, Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@ams/ui'
+import { Button, Dialog, DialogClose, DialogContent, DialogFooter, DialogTrigger } from '@juanarenas312002/ams-ui'
 
 export default function Confirm() {
   return (

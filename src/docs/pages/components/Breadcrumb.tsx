@@ -11,7 +11,7 @@ export default function BreadcrumbDoc() {
     <ComponentDoc
       slug="breadcrumb"
       description="Muestra dónde está la persona dentro de la jerarquía (sede, curso, materia) y le permite volver a cualquier nivel."
-      importCode={`import { Breadcrumb } from '@ams/ui'`}
+      importCode={`import { Breadcrumb } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Paths', title: 'Corta y larga', description: 'El último nivel es la página actual y no es enlace.' }]}
       api={[

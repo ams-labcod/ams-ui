@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Combobox, type ComboboxOption } from '@ams/ui'
+import { Combobox, type ComboboxOption } from '@juanarenas312002/ams-ui'
 
 const schools = ['Colegio San Andrés', 'IE Los Pinos', 'Liceo Moderno', 'Colegio Santa María', 'IE La Esperanza', 'Gimnasio Los Andes']
 

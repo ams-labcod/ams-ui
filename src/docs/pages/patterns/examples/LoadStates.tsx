@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { CalendarCheck, RotateCw } from 'lucide-react'
-import { Alert, Button, ChipGroup, EmptyState, Inline, Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, toast } from '@ams/ui'
+import { Alert, Button, ChipGroup, EmptyState, Inline, Skeleton, Stack, Table, TableBody, TableCell, TableHead, TableHeader, TableRow, toast } from '@juanarenas312002/ams-ui'
 
 type Outcome = 'ok' | 'empty' | 'error'
 type State = { status: 'loading' } | { status: 'error' } | { status: 'ready'; rows: string[][] }

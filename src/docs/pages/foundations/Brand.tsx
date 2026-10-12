@@ -35,7 +35,7 @@ export default function Brand() {
           ))}
         </div>
         <CodeBlock
-          code={`import { Logo } from '@ams/ui'
+          code={`import { Logo } from '@juanarenas312002/ams-ui'
 
 <Logo />                         // md, con nombre y "Academic Manager"
 <Logo size="sm" subtitle="UI" /> // subtítulo propio

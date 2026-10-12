@@ -10,7 +10,7 @@ export default function HoverCardDoc() {
     <ComponentDoc
       slug="hover-card"
       description="Vista previa que aparece al pasar el puntero o enfocar un enlace: la ficha de un docente, el resumen de un curso. Adelanta información sin obligar a abrir la página."
-      importCode={`import { HoverCard, HoverCardTrigger, HoverCardContent } from '@ams/ui'`}
+      importCode={`import { HoverCard, HoverCardTrigger, HoverCardContent } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Teacher', title: 'Ficha de una persona', description: 'Pasa el puntero o tabula hasta el nombre.' }]}
       api={[

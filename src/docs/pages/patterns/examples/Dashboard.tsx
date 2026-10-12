@@ -13,7 +13,7 @@ import {
   Stack,
   Stat,
   toast,
-} from '@ams/ui'
+} from '@juanarenas312002/ams-ui'
 import { enrollmentByMonth } from '../../../sample-data'
 
 const activity = [

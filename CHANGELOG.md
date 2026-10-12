@@ -1,6 +1,11 @@
 # Changelog
 
-Hitos internos de desarrollo, no versiones publicadas.
+Hitos de desarrollo. Desde 0.3.1, versiones publicadas en npm como `@juanarenas312002/ams-ui`.
+
+## 0.3.1 — primera publicación en npm
+
+- El paquete pasa a llamarse `@juanarenas312002/ams-ui` (`@ams` pertenece a otra organización en npm). Las importaciones de la documentación usan el nombre nuevo.
+- `prepublishOnly` ejecuta `check:release`: no se publica sin tipos, lint, pruebas, smoke y auditoría de accesibilidad en verde.
 
 ## Calendario: rango y año
 

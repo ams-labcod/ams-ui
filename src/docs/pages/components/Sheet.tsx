@@ -10,7 +10,7 @@ export default function SheetDoc() {
     <ComponentDoc
       slug="sheet"
       description="Panel que entra desde un borde de la pantalla. Muestra el detalle de un registro o un formulario largo sin salir de la lista, que sigue visible detrás."
-      importCode={`import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@ams/ui'`}
+      importCode={`import { Sheet, SheetTrigger, SheetContent, SheetClose } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'StudentDetail', title: 'Ficha de un registro', description: 'Cabecera y pie fijos; solo el contenido se desplaza.' },

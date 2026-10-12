@@ -10,7 +10,7 @@ export default function RadioGroupDoc() {
     <ComponentDoc
       slug="radio-group"
       description="Elige una sola opción de una lista corta que se ve completa. Con pocas opciones es más rápido que un Select porque no hay que abrir nada."
-      importCode={`import { RadioGroup } from '@ams/ui'`}
+      importCode={`import { RadioGroup } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Vertical y horizontal', description: 'Cada opción puede llevar descripción y estar deshabilitada. El error se muestra bajo el grupo.' },

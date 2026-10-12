@@ -10,7 +10,7 @@ export default function ToggleDoc() {
     <ComponentDoc
       slug="toggle"
       description="Botón que se queda activado o desactivado: mostrar u ocultar algo, fijar, aplicar un filtro rápido. A diferencia de Switch, vive en barras de herramientas y su texto no cambia."
-      importCode={`import { Toggle } from '@ams/ui'`}
+      importCode={`import { Toggle } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Toolbar', title: 'Filtros rápidos', description: 'Activado lleva el fondo turquesa del ítem activo de la referencia.' }]}
       api={[

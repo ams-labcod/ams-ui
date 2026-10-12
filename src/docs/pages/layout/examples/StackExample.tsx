@@ -1,4 +1,4 @@
-import { Button, FormField, Input, Stack, Textarea } from '@ams/ui'
+import { Button, FormField, Input, Stack, Textarea } from '@juanarenas312002/ams-ui'
 
 export default function StackExample() {
   return (

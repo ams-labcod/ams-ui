@@ -11,7 +11,7 @@ export default function DataTableDoc() {
     <ComponentDoc
       slug="datatable"
       description="Tabla de datos con orden, selección, paginación, columnas visibles, búsqueda, filtros y acciones por fila y masivas. La lógica (useDataTable, sobre TanStack Table v8) va separada de la vista (DataTable), así sirve igual con datos locales o del servidor."
-      importCode={`import { DataTable, useDataTable, type ColumnDef } from '@ams/ui'`}
+      importCode={`import { DataTable, useDataTable, type ColumnDef } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         {

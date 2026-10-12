@@ -10,7 +10,7 @@ export default function ProgressDoc() {
     <ComponentDoc
       slug="progress"
       description="Muestra cuánto de algo se ha completado: una operación en curso o una proporción (notas registradas, cupos ocupados). Incluye el anillo de asistencia de la referencia."
-      importCode={`import { Progress, ProgressRing } from '@ams/ui'`}
+      importCode={`import { Progress, ProgressRing } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Bars', title: 'Barras', description: 'Con value={null} es indeterminado: algo ocurre pero no se sabe cuánto falta. El tono cambia el significado: success para completado, warning cerca del límite.' },

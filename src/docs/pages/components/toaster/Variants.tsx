@@ -1,4 +1,4 @@
-import { Button, toast } from '@ams/ui'
+import { Button, toast } from '@juanarenas312002/ams-ui'
 
 export default function Variants() {
   return (

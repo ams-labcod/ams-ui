@@ -1,4 +1,4 @@
-import { Spinner } from '@ams/ui'
+import { Spinner } from '@juanarenas312002/ams-ui'
 
 export default function Sizes() {
   return (

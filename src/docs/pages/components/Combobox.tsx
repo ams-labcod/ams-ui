@@ -10,7 +10,7 @@ export default function ComboboxDoc() {
     <ComponentDoc
       slug="combobox"
       description="Select con buscador para listas largas: estudiantes, docentes, instituciones. Encuentra por nombre y por el texto secundario (grado, código)."
-      importCode={`import { Combobox } from '@ams/ui'`}
+      importCode={`import { Combobox } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Student', title: 'Lista local', description: '48 estudiantes con búsqueda difusa; elegir de nuevo el seleccionado lo quita.' },

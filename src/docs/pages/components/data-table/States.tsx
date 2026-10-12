@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { UserPlus, Users } from 'lucide-react'
-import { Button, ChipGroup, DataTable, EmptyState, useDataTable, type ColumnDef } from '@ams/ui'
+import { Button, ChipGroup, DataTable, EmptyState, useDataTable, type ColumnDef } from '@juanarenas312002/ams-ui'
 import { students, type Student } from '../../../sample-data'
 
 const columns: ColumnDef<Student>[] = [

@@ -15,7 +15,7 @@ function LayoutDoc({ slug, name, description, exampleTitle, api, dos, donts }: {
     <ComponentDoc
       slug={slug}
       description={description}
-      importCode={`import { ${name} } from '@ams/ui'`}
+      importCode={`import { ${name} } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: `${name}Example`, title: exampleTitle, previewClassName: 'block' }]}
       api={api}

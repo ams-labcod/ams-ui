@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { RadioGroup } from '@ams/ui'
+import { RadioGroup } from '@juanarenas312002/ams-ui'
 
 export default function Basic() {
   const [shift, setShift] = useState('manana')

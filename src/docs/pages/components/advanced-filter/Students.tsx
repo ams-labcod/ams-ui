@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AdvancedFilter, applyFilter, formatNumber, type FilterField, type FilterState } from '@ams/ui'
+import { AdvancedFilter, applyFilter, formatNumber, type FilterField, type FilterState } from '@juanarenas312002/ams-ui'
 import { gradeLabels, students } from '../../../sample-data'
 
 const fields: FilterField[] = [

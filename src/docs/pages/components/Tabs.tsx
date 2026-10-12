@@ -10,7 +10,7 @@ export default function TabsDoc() {
     <ComponentDoc
       slug="tabs"
       description="Divide una vista en secciones del mismo nivel y muestra una a la vez. La pestaña activa se marca como el ítem activo del panel de la referencia: fondo turquesa suave y borde."
-      importCode={`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@ams/ui'`}
+      importCode={`import { Tabs, TabsList, TabsTrigger, TabsContent } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Course', title: 'Secciones de un curso', description: 'Usa las flechas para cambiar de pestaña. La de Pagos está deshabilitada.' }]}
       api={[

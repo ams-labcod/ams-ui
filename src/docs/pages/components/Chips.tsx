@@ -10,7 +10,7 @@ export default function ChipsDoc() {
     <ComponentDoc
       slug="chips"
       description="Píldoras compactas para filtrar o etiquetar. ChipGroup elige una o varias opciones; Chip muestra un valor que se puede quitar, como un filtro activo."
-      importCode={`import { Chip, ChipGroup } from '@ams/ui'`}
+      importCode={`import { Chip, ChipGroup } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Filters', title: 'Selección múltiple y filtros activos', description: 'Los chips de abajo reflejan la selección y permiten quitarla una a una.' },

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Checkbox } from '@ams/ui'
+import { Checkbox } from '@juanarenas312002/ams-ui'
 
 const students = ['Ana M. Pérez', 'Luis F. Gómez', 'Sofía Restrepo']
 

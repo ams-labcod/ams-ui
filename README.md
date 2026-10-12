@@ -23,21 +23,21 @@ Cada componente tiene en la documentación un estado (estable, beta o experiment
 Requisitos: React 19 y Tailwind CSS v4.
 
 ```bash
-npm run build:lib                 # en este repositorio
-npm i ../AMS-LIBRARY-FRONTEND     # en tu app (o el .tgz de npm pack)
+npm i @juanarenas312002/ams-ui
+npm i -D tailwindcss @tailwindcss/vite
 ```
 
 En el CSS de entrada de tu app, en lugar de `@import 'tailwindcss'`:
 
 ```css
-@import '@ams/ui/tokens.css';
-@source '../node_modules/@ams/ui/dist-lib';
+@import '@juanarenas312002/ams-ui/tokens.css';
+@source '../node_modules/@juanarenas312002/ams-ui/dist-lib';
 ```
 
 Carga Space Grotesk e Inter (en la documentación, Introducción, está el `<link>` exacto) y aplica el tema antes del primer pintado con el script de `index.html`.
 
 ```tsx
-import { Button, FormField, Input, toast, Toaster } from '@ams/ui'
+import { Button, FormField, Input, toast, Toaster } from '@juanarenas312002/ams-ui'
 
 export function App() {
   return (

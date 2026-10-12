@@ -1,4 +1,4 @@
-import { Alert } from '@ams/ui'
+import { Alert } from '@juanarenas312002/ams-ui'
 
 export default function Variants() {
   return (

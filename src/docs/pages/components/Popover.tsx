@@ -10,7 +10,7 @@ export default function PopoverDoc() {
     <ComponentDoc
       slug="popover"
       description="Panel flotante anclado a un botón para contenido interactivo breve: filtros, ajustes rápidos, una vista previa. No bloquea la página como un diálogo."
-      importCode={`import { Popover, PopoverTrigger, PopoverContent, PopoverClose } from '@ams/ui'`}
+      importCode={`import { Popover, PopoverTrigger, PopoverContent, PopoverClose } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Filters', title: 'Filtros rápidos', description: 'Se cierra con Escape, con clic fuera o con un PopoverClose.' }]}
       api={[

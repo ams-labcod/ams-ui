@@ -10,7 +10,7 @@ export default function CollapsibleDoc() {
     <ComponentDoc
       slug="collapsible"
       description="Muestra u oculta un bloque de detalle bajo su resumen. Es la pieza básica del acordeón (v0.3), que coordina varios."
-      importCode={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@ams/ui'`}
+      importCode={`import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Details', title: 'Detalle de un pago', description: 'El contenido se despliega con una animación de altura que se desactiva con movimiento reducido.' }]}
       api={[

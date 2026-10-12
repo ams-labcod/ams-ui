@@ -8,7 +8,7 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from '@ams/ui'
+} from '@juanarenas312002/ams-ui'
 
 export default function RowActions() {
   const [last, setLast] = useState('ninguna')

@@ -10,7 +10,7 @@ export default function BadgeDoc() {
     <ComponentDoc
       slug="badge"
       description="Etiqueta corta que describe un estado o una categoría: si una nota está aprobada, a qué materia pertenece un curso o si un pago está pendiente."
-      importCode={`import { Badge } from '@ams/ui'`}
+      importCode={`import { Badge } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Variants', title: 'Variantes', description: 'Los colores semánticos comunican estado; accent marca categorías; solid se reserva para destacar una única opción, como el plan recomendado.' },

@@ -1,4 +1,4 @@
-import { Button, type ButtonSize, type ButtonVariant } from '@ams/ui'
+import { Button, type ButtonSize, type ButtonVariant } from '@juanarenas312002/ams-ui'
 import { ComponentDoc, jsx, loadExamples, Playground } from '../../ComponentDoc'
 import { Code } from '../../kit'
 
@@ -14,7 +14,7 @@ export default function ButtonDoc() {
     <ComponentDoc
       slug="button"
       description="Lanza una acción. El primario lleva el degradado turquesa de la marca y se reserva para la acción principal de cada vista; el resto de botones la acompañan sin competir con ella."
-      importCode={`import { Button } from '@ams/ui'`}
+      importCode={`import { Button } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       playground={
         <Playground

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pagination } from '@ams/ui'
+import { Pagination } from '@juanarenas312002/ams-ui'
 
 export default function Basic() {
   const [page, setPage] = useState(6)

@@ -10,7 +10,7 @@ export default function DatePickerDoc() {
     <ComponentDoc
       slug="date-picker"
       description="Campo de fecha que abre el calendario en un popover. Muestra la fecha escrita en palabras para que no haya dudas entre día y mes."
-      importCode={`import { DatePicker, DateRangePicker } from '@ams/ui'`}
+      importCode={`import { DatePicker, DateRangePicker } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Con límites y validación', description: 'El primer campo limita a los próximos dos meses y salta fines de semana; el segundo muestra el estado de error dentro de un FormField.' },

@@ -1,4 +1,4 @@
-import { AspectRatio, Grid } from '@ams/ui'
+import { AspectRatio, Grid } from '@juanarenas312002/ams-ui'
 
 export default function AspectRatioExample() {
   return (

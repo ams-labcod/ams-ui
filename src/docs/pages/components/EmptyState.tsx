@@ -10,7 +10,7 @@ export default function EmptyStateDoc() {
     <ComponentDoc
       slug="empty-state"
       description="Ocupa el lugar de una lista o tabla sin datos. Explica por qué está vacía y ofrece la acción para llenarla. El icono usa el mismo marco que las tarjetas de características de la referencia."
-      importCode={`import { EmptyState } from '@ams/ui'`}
+      importCode={`import { EmptyState } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'NoStudents', title: 'Primer uso', description: 'Cuando todavía no hay nada: invita a crear el primer registro.' },

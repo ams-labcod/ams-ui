@@ -1,5 +1,5 @@
 import { UserPlus, Users } from 'lucide-react'
-import { Button, EmptyState } from '@ams/ui'
+import { Button, EmptyState } from '@juanarenas312002/ams-ui'
 
 export default function NoStudents() {
   return (

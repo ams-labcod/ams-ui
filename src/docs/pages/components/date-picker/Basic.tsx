@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DatePicker, FormField } from '@ams/ui'
+import { DatePicker, FormField } from '@juanarenas312002/ams-ui'
 
 export default function Basic() {
   const [due, setDue] = useState<Date | null>(null)

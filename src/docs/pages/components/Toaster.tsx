@@ -11,7 +11,7 @@ export default function ToasterDoc() {
     <ComponentDoc
       slug="toaster"
       description="Notificaciones breves que confirman una operación o avisan de un problema sin interrumpir. Aparecen en una esquina, se cierran solas y se pueden llamar desde cualquier parte con toast()."
-      importCode={`import { Toaster, toast } from '@ams/ui'
+      importCode={`import { Toaster, toast } from '@juanarenas312002/ams-ui'
 
 // Una vez, en la raíz de la app:
 <Toaster />`}

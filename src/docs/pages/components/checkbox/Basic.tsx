@@ -1,4 +1,4 @@
-import { Checkbox } from '@ams/ui'
+import { Checkbox } from '@juanarenas312002/ams-ui'
 
 export default function Basic() {
   return (

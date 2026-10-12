@@ -1,4 +1,4 @@
-import { Avatar } from '@ams/ui'
+import { Avatar } from '@juanarenas312002/ams-ui'
 
 export default function Sizes() {
   return (

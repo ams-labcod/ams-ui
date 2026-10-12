@@ -1,4 +1,4 @@
-import { DonutChart, formatCurrency } from '@ams/ui'
+import { DonutChart, formatCurrency } from '@juanarenas312002/ams-ui'
 
 export default function Donut() {
   return (

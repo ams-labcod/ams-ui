@@ -11,7 +11,7 @@ export default function DropzoneDoc() {
     <ComponentDoc
       slug="dropzone"
       description="Zona para arrastrar archivos o elegirlos del equipo. Valida tipo, tamaño y cantidad antes de subir y explica cada rechazo."
-      importCode={`import { Dropzone, DropzoneFile, validateFiles } from '@ams/ui'`}
+      importCode={`import { Dropzone, DropzoneFile, validateFiles } from '@juanarenas312002/ams-ui'`}
       examples={examples}
       sections={[
         {

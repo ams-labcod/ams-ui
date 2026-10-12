@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BookOpen, CalendarDays, ChartColumn, LayoutDashboard, Settings, UserPlus, Users } from 'lucide-react'
-import { Button, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@ams/ui'
+import { Button, CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@juanarenas312002/ams-ui'
 
 export default function Palette() {
   const [open, setOpen] = useState(false)
