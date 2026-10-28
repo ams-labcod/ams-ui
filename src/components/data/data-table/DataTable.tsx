@@ -154,7 +154,9 @@ function ColumnsMenu<T>({ table }: { table: TanTable<T> }) {
 
 function Footer<T>({ table, pageSizes }: { table: TanTable<T>; pageSizes: number[] }) {
   const { pageIndex, pageSize } = table.getState().pagination
-  const total = table.getFilteredRowModel().rows.length
+  // getRowCount respeta `rowCount` (paginación en el servidor); si no, cuenta las filas
+  // filtradas. Contar las filas recibidas daba "1–25 de 25" aunque la API tuviera más.
+  const total = table.getRowCount()
   if (total === 0) return null
   const from = pageIndex * pageSize + 1
   const to = Math.min(total, from + pageSize - 1)

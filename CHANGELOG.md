@@ -2,6 +2,16 @@
 
 Hitos de desarrollo. Desde 0.3.1, versiones publicadas en npm como `@juanarenas312002/ams-ui`.
 
+## 0.4.0 — carga por componente
+
+Cambia el empaquetado; la API pública es la misma (todo lo que se importaba desde la raíz sigue ahí).
+
+- **Un archivo por módulo** (`preserveModules`). Antes, `dist-lib/index.js` era un solo archivo y la app que lo consumía cargaba en todas sus pantallas cualquier componente que usara una sola de ellas. En `ams_app`, la consola de plataforma bajó de 161,3 a 98,0 KB gzip y el asistente de prematrícula de 180,6 a 153,7 KB, sin cambiar sus importaciones.
+- **Un punto de entrada por componente** en `exports` (`@juanarenas312002/ams-ui/button`, `/data-table`, `/utils`, `/hooks`…), con sus tipos. Se generan desde `src/index.ts` con `npm run entradas`; una prueba falla si no coinciden.
+- `"sideEffects": ["**/*.css"]`: el empaquetador puede descartar todo lo que no se usa.
+- **DataTable con paginación en el servidor:** nueva opción `rowCount` en `useDataTable`. El pie y el número de páginas usan ese total (antes contaban las filas recibidas y mostraban «1–25 de 25» aunque la API tuviera más), y la tabla no pagina, ordena ni filtra en el cliente.
+- La prueba de humo importa cada entrada por su nombre de paquete.
+
 ## 0.3.1 — primera publicación en npm
 
 - El paquete pasa a llamarse `@juanarenas312002/ams-ui` (`@ams` pertenece a otra organización en npm). Las importaciones de la documentación usan el nombre nuevo.

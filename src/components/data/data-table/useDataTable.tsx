@@ -40,7 +40,13 @@ export interface UseDataTableOptions<T> {
   initialColumnVisibility?: VisibilityState
   /** Texto de búsqueda global (filtra en todas las columnas con accessor). */
   globalFilter?: string
-  /** Escape para opciones avanzadas de TanStack (paginación en servidor, filtros por columna…). */
+  /**
+   * Paginación en el servidor: total de filas que informa la API. Con él, `data` es solo la
+   * página actual, la tabla no pagina ni ordena ni filtra en el cliente, y el pie y el número
+   * de páginas usan este total en lugar de contar las filas recibidas.
+   */
+  rowCount?: number
+  /** Escape para opciones avanzadas de TanStack (filtros por columna, estado controlado…). */
   tableOptions?: Partial<TableOptions<T>>
 }
 
@@ -55,6 +61,7 @@ export function useDataTable<T>({
   initialSorting = [],
   initialColumnVisibility = {},
   globalFilter,
+  rowCount,
   tableOptions,
 }: UseDataTableOptions<T>) {
   const [sorting, setSorting] = useState<SortingState>(initialSorting)
@@ -80,6 +87,8 @@ export function useDataTable<T>({
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    // En el servidor, la API ya entrega la página filtrada y ordenada.
+    ...(rowCount !== undefined ? { manualPagination: true, manualSorting: true, manualFiltering: true, rowCount } : {}),
     ...tableOptions,
   })
 }
