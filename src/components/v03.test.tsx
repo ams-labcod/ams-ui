@@ -269,6 +269,36 @@ describe('DataTable', () => {
     expect(onBulk.mock.calls[0]?.[0].map((s: Student) => s.name)).toEqual(['Ana Pérez', 'Luis Gómez'])
   })
 
+  it('paginación en el servidor: el total y las páginas vienen de rowCount', async () => {
+    const onPage = vi.fn()
+    function Server() {
+      const [page, setPage] = useState({ pageIndex: 0, pageSize: 2 })
+      // La API devolvió solo la página actual (2 filas) de 30 en total.
+      const table = useDataTable({
+        data: students.slice(0, 2),
+        columns,
+        rowCount: 30,
+        tableOptions: {
+          state: { pagination: page },
+          onPaginationChange: (u) => setPage((p) => {
+            const nuevo = typeof u === 'function' ? u(p) : u
+            onPage(nuevo)
+            return nuevo
+          }),
+        },
+      })
+      return <DataTable table={table} label="Estudiantes" />
+    }
+    render(<Server />)
+    expect(screen.getByText('1–2 de 30')).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Página 15' })).toBeInTheDocument()
+    await userEvent.click(screen.getByRole('button', { name: 'Página 2' }))
+    expect(onPage).toHaveBeenLastCalledWith({ pageIndex: 1, pageSize: 2 })
+    expect(screen.getByText('3–4 de 30')).toBeInTheDocument()
+    // No pagina en el cliente: muestra las filas recibidas tal cual.
+    expect(screen.getAllByRole('row').slice(1)).toHaveLength(2)
+  })
+
   it('estado vacío', () => {
     function Empty() {
       const table = useDataTable<Student>({ data: [], columns })

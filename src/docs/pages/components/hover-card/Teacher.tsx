@@ -1,4 +1,4 @@
-import { Avatar, Badge, HoverCard, HoverCardContent, HoverCardTrigger } from '@juanarenas312002/ams-ui'
+import { Avatar, Badge, HoverCard, HoverCardContent, HoverCardTrigger } from '@ams-labcod/ams-ui'
 
 export default function Teacher() {
   return (

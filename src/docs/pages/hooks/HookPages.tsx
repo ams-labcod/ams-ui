@@ -27,7 +27,7 @@ function HookDoc({ example, exampleTitle, notes, ...p }: HookDocProps) {
 export const DisclosurePage = () => (
   <HookDoc
     slug="usedisclosure"
-    importCode={`import { useDisclosure } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useDisclosure } from '@ams-labcod/ams-ui'`}
     example="DisclosureExample"
     exampleTitle="Controlar un panel"
     description="Estado abierto o cerrado para diálogos, paneles y secciones, con funciones estables para abrir, cerrar y alternar."
@@ -51,7 +51,7 @@ export const DisclosurePage = () => (
 export const MediaQueryPage = () => (
   <HookDoc
     slug="usemediaquery"
-    importCode={`import { useMediaQuery } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useMediaQuery } from '@ams-labcod/ams-ui'`}
     example="MediaQueryExample"
     exampleTitle="Ancho y preferencias"
     description="Devuelve si una media query coincide y se actualiza al cambiar: ancho de pantalla, movimiento reducido, esquema de color."
@@ -74,7 +74,7 @@ export const MediaQueryPage = () => (
 export const DebouncePage = () => (
   <HookDoc
     slug="usedebouncedvalue"
-    importCode={`import { useDebouncedValue } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useDebouncedValue } from '@ams-labcod/ams-ui'`}
     example="DebounceExample"
     exampleTitle="Búsqueda sin una petición por tecla"
     description="Devuelve el valor solo cuando deja de cambiar durante un tiempo. Evita enviar una petición por cada tecla al buscar."
@@ -97,7 +97,7 @@ export const DebouncePage = () => (
 export const InViewPage = () => (
   <HookDoc
     slug="useinview"
-    importCode={`import { useInView } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useInView } from '@ams-labcod/ams-ui'`}
     example="InViewExample"
     exampleTitle="Cargar al hacer scroll"
     description="Indica si un elemento está en pantalla (IntersectionObserver). Para cargar contenido solo cuando se va a ver o revelar una sección al entrar."
@@ -120,7 +120,7 @@ export const InViewPage = () => (
 export const HotkeyPage = () => (
   <HookDoc
     slug="usehotkey"
-    importCode={`import { useHotkey } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useHotkey } from '@ams-labcod/ams-ui'`}
     example="HotkeyExample"
     exampleTitle="Atajo global"
     description="Registra un atajo de teclado global. «mod» es ⌘ en Mac y Ctrl en el resto. Esta documentación lo usa para Ctrl K y «/»."
@@ -145,7 +145,7 @@ export const HotkeyPage = () => (
 export const ThemePage = () => (
   <HookDoc
     slug="usetheme"
-    importCode={`import { useTheme } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { useTheme } from '@ams-labcod/ams-ui'`}
     example="ThemeExample"
     exampleTitle="Selector de tema"
     description="Lee y cambia el tema (oscuro o claro). El estado vive en el atributo data-theme de <html>: cualquier componente que use el hook se entera del cambio sin provider."
@@ -169,7 +169,7 @@ export const ThemePage = () => (
 export const FormatPage = () => (
   <HookDoc
     slug="utilidades"
-    importCode={`import { cn, formatNumber, formatCurrency, formatBytes, formatDate, dates } from '@juanarenas312002/ams-ui'`}
+    importCode={`import { cn, formatNumber, formatCurrency, formatBytes, formatDate, dates } from '@ams-labcod/ams-ui'`}
     example="FormatExample"
     exampleTitle="Formato en español"
     description="Utilidades sin React: combinar clases, y formatear números, moneda, tamaños y fechas con Intl en español por defecto."

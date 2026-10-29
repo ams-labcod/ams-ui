@@ -10,7 +10,7 @@ export default function SelectDoc() {
     <ComponentDoc
       slug="select"
       description="Elige una opción de una lista corta y conocida: curso, período, sede. La lista se abre sobre una superficie sólida con el ítem elegido marcado en turquesa."
-      importCode={`import { FormField, Select } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { FormField, Select } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Controlado', description: 'value y onValueChange lo controlan; defaultValue lo deja sin controlar. Las opciones pueden estar deshabilitadas.' },

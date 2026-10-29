@@ -9,6 +9,6 @@
     "types": ["vite/client"],
     "paths": {}
   },
-  "include": ["src/index.ts"],
+  "include": ["src/index.ts", "src/entradas/*.ts"],
   "exclude": ["src/**/*.test.ts", "src/**/*.test.tsx", "src/docs", "src/test"]
 }

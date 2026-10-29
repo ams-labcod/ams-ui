@@ -1,4 +1,4 @@
-import { Badge } from '@juanarenas312002/ams-ui'
+import { Badge } from '@ams-labcod/ams-ui'
 
 export default function Dot() {
   return (

@@ -1,4 +1,4 @@
-import { Button, toast } from '@juanarenas312002/ams-ui'
+import { Button, toast } from '@ams-labcod/ams-ui'
 
 export default function Progress() {
   function sendReports() {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormField, Select } from '@juanarenas312002/ams-ui'
+import { FormField, Select } from '@ams-labcod/ams-ui'
 
 const courses = [
   { value: '3a', label: '3.º A · Matemáticas' },

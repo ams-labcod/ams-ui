@@ -1,4 +1,4 @@
-import { Grid } from '@juanarenas312002/ams-ui'
+import { Grid } from '@ams-labcod/ams-ui'
 
 const modules = ['Calificaciones', 'Asistencia', 'Calendario', 'Matrículas', 'Pagos', 'Reportes']
 

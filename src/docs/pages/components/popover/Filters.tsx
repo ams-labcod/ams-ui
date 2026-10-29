@@ -1,5 +1,5 @@
 import { SlidersHorizontal } from 'lucide-react'
-import { Button, Checkbox, Popover, PopoverClose, PopoverContent, PopoverTrigger } from '@juanarenas312002/ams-ui'
+import { Button, Checkbox, Popover, PopoverClose, PopoverContent, PopoverTrigger } from '@ams-labcod/ams-ui'
 
 export default function Filters() {
   return (

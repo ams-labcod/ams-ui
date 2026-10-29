@@ -1,4 +1,4 @@
-import { Input, Label } from '@juanarenas312002/ams-ui'
+import { Input, Label } from '@ams-labcod/ams-ui'
 
 // Label suelto, para cuando la estructura no encaja en FormField.
 export default function LabelOnly() {

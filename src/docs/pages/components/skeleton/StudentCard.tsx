@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Avatar, Button, Skeleton } from '@juanarenas312002/ams-ui'
+import { Avatar, Button, Skeleton } from '@ams-labcod/ams-ui'
 
 export default function StudentCard() {
   const [loading, setLoading] = useState(true)

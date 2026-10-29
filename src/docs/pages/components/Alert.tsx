@@ -10,7 +10,7 @@ export default function AlertDoc() {
     <ComponentDoc
       slug="alert"
       description="Mensaje que acompaña a una vista para informar de algo que afecta a lo que la persona está haciendo. Se queda en la página; para avisos temporales usa Toaster (v0.2)."
-      importCode={`import { Alert } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Alert } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Variants', title: 'Variantes', description: 'Cada variante tiene su icono además del color, para que el tono se entienda sin depender de él.' },

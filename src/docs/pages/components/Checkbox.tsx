@@ -10,7 +10,7 @@ export default function CheckboxDoc() {
     <ComponentDoc
       slug="checkbox"
       description="Activa o desactiva una opción, o elige varias de una lista. Es un checkbox nativo con el aspecto de la marca, así que funciona en formularios sin código extra."
-      importCode={`import { Checkbox } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Checkbox } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Con etiqueta y descripción', description: 'Toda la fila (casilla y texto) responde al clic.' },

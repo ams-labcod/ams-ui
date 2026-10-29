@@ -10,7 +10,7 @@ export default function SwitchDoc() {
     <ComponentDoc
       slug="switch"
       description="Enciende o apaga un ajuste que se aplica al momento, sin botón de guardar: notificaciones, modo sin conexión, visibilidad de una sección."
-      importCode={`import { Switch } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Switch } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Basic', title: 'Ajustes', description: 'La descripción puede cambiar con el estado para explicar qué implica.' }]}
       api={[

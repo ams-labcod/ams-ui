@@ -10,7 +10,7 @@ export default function ChartsDoc() {
     <ComponentDoc
       slug="charts"
       description="Gráficos de línea, área, barras y donut sobre recharts, con la paleta de AMS validada para daltonismo en ambos temas. Todos traen tooltip, leyenda, estados de carga y vacío, y una vista de tabla con los mismos datos."
-      importCode={`import { LineChart, AreaChart, BarChart, DonutChart } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { LineChart, AreaChart, BarChart, DonutChart } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Bars', title: 'Barras', description: 'Comparar cantidades entre categorías. Las barras de la referencia, con extremo redondeado y como máximo 24 px de grosor.', previewClassName: 'block' },

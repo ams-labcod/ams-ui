@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger, Button, toast } from '@juanarenas312002/ams-ui'
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogTrigger, Button, toast } from '@ams-labcod/ams-ui'
 
 export default function DeletePeriod() {
   const [deleted, setDeleted] = useState(false)

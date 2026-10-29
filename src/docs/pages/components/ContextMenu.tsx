@@ -13,7 +13,7 @@ export default function ContextMenuDoc() {
       importCode={`import {
   ContextMenu, ContextMenuTrigger, ContextMenuContent,
   ContextMenuItem, ContextMenuLabel, ContextMenuSeparator,
-} from '@juanarenas312002/ams-ui'`}
+} from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'FileCard', title: 'Acciones de un archivo', description: 'Comparte estilos y API de ítem con Dropdown Menu.' }]}
       api={[

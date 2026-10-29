@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Editor, FormField } from '@juanarenas312002/ams-ui'
+import { Editor, FormField } from '@ams-labcod/ams-ui'
 
 export default function Message() {
   const [text, setText] = useState('## Reunión de acudientes\n\nLes recordamos la reunión del **jueves 12** a las 6:30 p. m.\n\n- Entrega de boletines\n- Salida pedagógica')

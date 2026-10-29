@@ -1,4 +1,4 @@
-import { FormField, Select } from '@juanarenas312002/ams-ui'
+import { FormField, Select } from '@ams-labcod/ams-ui'
 
 const periods = [
   { value: 'p1', label: 'Primer período' },

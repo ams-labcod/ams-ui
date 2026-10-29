@@ -11,7 +11,7 @@ export default function FormDoc() {
     <ComponentDoc
       slug="form"
       description="Formularios con esquema: react-hook-form gestiona el estado y zod define las reglas y los mensajes. FormItem conecta cada campo con su error sin código repetido."
-      importCode={`import { Form, FormItem } from '@juanarenas312002/ams-ui'
+      importCode={`import { Form, FormItem } from '@ams-labcod/ams-ui'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'`}

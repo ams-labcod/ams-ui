@@ -28,7 +28,7 @@ import {
   toast,
   useDataTable,
   type ColumnDef,
-} from '@juanarenas312002/ams-ui'
+} from '@ams-labcod/ams-ui'
 
 type Role = 'admin' | 'docente' | 'secretaria'
 interface User {

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Combobox, FormField } from '@juanarenas312002/ams-ui'
+import { Combobox, FormField } from '@ams-labcod/ams-ui'
 import { gradeLabels, students } from '../../../sample-data'
 
 const options = students.map((s) => ({ value: s.id, label: s.name, description: `${gradeLabels[s.grade]} · ${s.id}`, disabled: s.status === 'retirado' }))

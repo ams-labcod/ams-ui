@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Button, Checkbox, FormField, Input, Select } from '@juanarenas312002/ams-ui'
+import { Button, Checkbox, FormField, Input, Select } from '@ams-labcod/ams-ui'
 
 type Errors = Partial<Record<'name' | 'email' | 'grade', string>>
 

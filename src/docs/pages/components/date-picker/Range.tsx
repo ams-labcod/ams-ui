@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { DatePicker, DateRangePicker, FormField, type DateRange } from '@juanarenas312002/ams-ui'
+import { DatePicker, DateRangePicker, FormField, type DateRange } from '@ams-labcod/ams-ui'
 
 export default function Range() {
   const [period, setPeriod] = useState<DateRange>({ from: null, to: null })

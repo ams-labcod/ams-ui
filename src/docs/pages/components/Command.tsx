@@ -13,7 +13,7 @@ export default function CommandDoc() {
       importCode={`import {
   Command, CommandDialog, CommandInput, CommandList,
   CommandEmpty, CommandGroup, CommandItem, CommandSeparator,
-} from '@juanarenas312002/ams-ui'`}
+} from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Palette', title: 'Paleta en un diálogo', description: 'Escribe «notas»: encuentra «Calificaciones» por sus keywords. Las flechas recorren los resultados y Enter ejecuta.' },

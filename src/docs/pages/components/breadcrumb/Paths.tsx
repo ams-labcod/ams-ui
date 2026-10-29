@@ -1,4 +1,4 @@
-import { Breadcrumb } from '@juanarenas312002/ams-ui'
+import { Breadcrumb } from '@ams-labcod/ams-ui'
 
 export default function Paths() {
   return (

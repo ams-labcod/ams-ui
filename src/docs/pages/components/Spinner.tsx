@@ -10,7 +10,7 @@ export default function SpinnerDoc() {
     <ComponentDoc
       slug="spinner"
       description="Indica que algo está en curso y no se sabe cuánto falta. El arco turquesa sobre su propio carril recuerda al anillo de asistencia de la referencia."
-      importCode={`import { Spinner } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Spinner } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Sizes', title: 'Tamaños', description: 'Toma el color del texto con className (text-fg-subtle, text-current).' }]}
       api={[

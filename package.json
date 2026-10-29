@@ -1,6 +1,6 @@
 {
-  "name": "@juanarenas312002/ams-ui",
-  "version": "0.3.1",
+  "name": "@ams-labcod/ams-ui",
+  "version": "0.4.0",
   "description": "Librería de componentes de AMS, el sistema de gestión académica: React, Tailwind CSS v4 y Radix.",
   "keywords": [
     "react",
@@ -11,22 +11,230 @@
     "radix",
     "ams"
   ],
-  "homepage": "https://github.com/JuanArenas2002/AMS-UI#readme",
+  "homepage": "https://github.com/ams-labcod/ams-ui#readme",
   "bugs": {
-    "url": "https://github.com/JuanArenas2002/AMS-UI/issues"
+    "url": "https://github.com/ams-labcod/ams-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JuanArenas2002/AMS-UI.git"
+    "url": "git+https://github.com/ams-labcod/ams-ui.git"
   },
   "type": "module",
   "sideEffects": [
-    "*.css"
+    "**/*.css"
   ],
   "exports": {
     ".": {
       "types": "./dist-lib/types/index.d.ts",
       "import": "./dist-lib/index.js"
+    },
+    "./accordion": {
+      "types": "./dist-lib/types/entradas/accordion.d.ts",
+      "import": "./dist-lib/entradas/accordion.js"
+    },
+    "./advanced-filter": {
+      "types": "./dist-lib/types/entradas/advanced-filter.d.ts",
+      "import": "./dist-lib/entradas/advanced-filter.js"
+    },
+    "./alert": {
+      "types": "./dist-lib/types/entradas/alert.d.ts",
+      "import": "./dist-lib/entradas/alert.js"
+    },
+    "./alert-dialog": {
+      "types": "./dist-lib/types/entradas/alert-dialog.d.ts",
+      "import": "./dist-lib/entradas/alert-dialog.js"
+    },
+    "./aurora": {
+      "types": "./dist-lib/types/entradas/aurora.d.ts",
+      "import": "./dist-lib/entradas/aurora.js"
+    },
+    "./avatar": {
+      "types": "./dist-lib/types/entradas/avatar.d.ts",
+      "import": "./dist-lib/entradas/avatar.js"
+    },
+    "./badge": {
+      "types": "./dist-lib/types/entradas/badge.d.ts",
+      "import": "./dist-lib/entradas/badge.js"
+    },
+    "./breadcrumb": {
+      "types": "./dist-lib/types/entradas/breadcrumb.d.ts",
+      "import": "./dist-lib/entradas/breadcrumb.js"
+    },
+    "./button": {
+      "types": "./dist-lib/types/entradas/button.d.ts",
+      "import": "./dist-lib/entradas/button.js"
+    },
+    "./calendar": {
+      "types": "./dist-lib/types/entradas/calendar.d.ts",
+      "import": "./dist-lib/entradas/calendar.js"
+    },
+    "./charts": {
+      "types": "./dist-lib/types/entradas/charts.d.ts",
+      "import": "./dist-lib/entradas/charts.js"
+    },
+    "./checkbox": {
+      "types": "./dist-lib/types/entradas/checkbox.d.ts",
+      "import": "./dist-lib/entradas/checkbox.js"
+    },
+    "./chips": {
+      "types": "./dist-lib/types/entradas/chips.d.ts",
+      "import": "./dist-lib/entradas/chips.js"
+    },
+    "./collapsible": {
+      "types": "./dist-lib/types/entradas/collapsible.d.ts",
+      "import": "./dist-lib/entradas/collapsible.js"
+    },
+    "./combobox": {
+      "types": "./dist-lib/types/entradas/combobox.d.ts",
+      "import": "./dist-lib/entradas/combobox.js"
+    },
+    "./command": {
+      "types": "./dist-lib/types/entradas/command.d.ts",
+      "import": "./dist-lib/entradas/command.js"
+    },
+    "./context-menu": {
+      "types": "./dist-lib/types/entradas/context-menu.d.ts",
+      "import": "./dist-lib/entradas/context-menu.js"
+    },
+    "./data-table": {
+      "types": "./dist-lib/types/entradas/data-table.d.ts",
+      "import": "./dist-lib/entradas/data-table.js"
+    },
+    "./date-picker": {
+      "types": "./dist-lib/types/entradas/date-picker.d.ts",
+      "import": "./dist-lib/entradas/date-picker.js"
+    },
+    "./dialog": {
+      "types": "./dist-lib/types/entradas/dialog.d.ts",
+      "import": "./dist-lib/entradas/dialog.js"
+    },
+    "./dropdown-menu": {
+      "types": "./dist-lib/types/entradas/dropdown-menu.d.ts",
+      "import": "./dist-lib/entradas/dropdown-menu.js"
+    },
+    "./dropzone": {
+      "types": "./dist-lib/types/entradas/dropzone.d.ts",
+      "import": "./dist-lib/entradas/dropzone.js"
+    },
+    "./editor": {
+      "types": "./dist-lib/types/entradas/editor.d.ts",
+      "import": "./dist-lib/entradas/editor.js"
+    },
+    "./empty-state": {
+      "types": "./dist-lib/types/entradas/empty-state.d.ts",
+      "import": "./dist-lib/entradas/empty-state.js"
+    },
+    "./field": {
+      "types": "./dist-lib/types/entradas/field.d.ts",
+      "import": "./dist-lib/entradas/field.js"
+    },
+    "./floating-field": {
+      "types": "./dist-lib/types/entradas/floating-field.d.ts",
+      "import": "./dist-lib/entradas/floating-field.js"
+    },
+    "./form": {
+      "types": "./dist-lib/types/entradas/form.d.ts",
+      "import": "./dist-lib/entradas/form.js"
+    },
+    "./hooks": {
+      "types": "./dist-lib/types/entradas/hooks.d.ts",
+      "import": "./dist-lib/entradas/hooks.js"
+    },
+    "./hover-card": {
+      "types": "./dist-lib/types/entradas/hover-card.d.ts",
+      "import": "./dist-lib/entradas/hover-card.js"
+    },
+    "./input": {
+      "types": "./dist-lib/types/entradas/input.d.ts",
+      "import": "./dist-lib/entradas/input.js"
+    },
+    "./layout": {
+      "types": "./dist-lib/types/entradas/layout.d.ts",
+      "import": "./dist-lib/entradas/layout.js"
+    },
+    "./logo": {
+      "types": "./dist-lib/types/entradas/logo.d.ts",
+      "import": "./dist-lib/entradas/logo.js"
+    },
+    "./pagination": {
+      "types": "./dist-lib/types/entradas/pagination.d.ts",
+      "import": "./dist-lib/entradas/pagination.js"
+    },
+    "./popover": {
+      "types": "./dist-lib/types/entradas/popover.d.ts",
+      "import": "./dist-lib/entradas/popover.js"
+    },
+    "./progress": {
+      "types": "./dist-lib/types/entradas/progress.d.ts",
+      "import": "./dist-lib/entradas/progress.js"
+    },
+    "./radio-group": {
+      "types": "./dist-lib/types/entradas/radio-group.d.ts",
+      "import": "./dist-lib/entradas/radio-group.js"
+    },
+    "./scroll-area": {
+      "types": "./dist-lib/types/entradas/scroll-area.d.ts",
+      "import": "./dist-lib/entradas/scroll-area.js"
+    },
+    "./select": {
+      "types": "./dist-lib/types/entradas/select.d.ts",
+      "import": "./dist-lib/entradas/select.js"
+    },
+    "./separator": {
+      "types": "./dist-lib/types/entradas/separator.d.ts",
+      "import": "./dist-lib/entradas/separator.js"
+    },
+    "./sheet": {
+      "types": "./dist-lib/types/entradas/sheet.d.ts",
+      "import": "./dist-lib/entradas/sheet.js"
+    },
+    "./skeleton": {
+      "types": "./dist-lib/types/entradas/skeleton.d.ts",
+      "import": "./dist-lib/entradas/skeleton.js"
+    },
+    "./slider": {
+      "types": "./dist-lib/types/entradas/slider.d.ts",
+      "import": "./dist-lib/entradas/slider.js"
+    },
+    "./spinner": {
+      "types": "./dist-lib/types/entradas/spinner.d.ts",
+      "import": "./dist-lib/entradas/spinner.js"
+    },
+    "./stat": {
+      "types": "./dist-lib/types/entradas/stat.d.ts",
+      "import": "./dist-lib/entradas/stat.js"
+    },
+    "./switch": {
+      "types": "./dist-lib/types/entradas/switch.d.ts",
+      "import": "./dist-lib/entradas/switch.js"
+    },
+    "./table": {
+      "types": "./dist-lib/types/entradas/table.d.ts",
+      "import": "./dist-lib/entradas/table.js"
+    },
+    "./tabs": {
+      "types": "./dist-lib/types/entradas/tabs.d.ts",
+      "import": "./dist-lib/entradas/tabs.js"
+    },
+    "./textarea": {
+      "types": "./dist-lib/types/entradas/textarea.d.ts",
+      "import": "./dist-lib/entradas/textarea.js"
+    },
+    "./toast": {
+      "types": "./dist-lib/types/entradas/toast.d.ts",
+      "import": "./dist-lib/entradas/toast.js"
+    },
+    "./toggle": {
+      "types": "./dist-lib/types/entradas/toggle.d.ts",
+      "import": "./dist-lib/entradas/toggle.js"
+    },
+    "./tooltip": {
+      "types": "./dist-lib/types/entradas/tooltip.d.ts",
+      "import": "./dist-lib/entradas/tooltip.js"
+    },
+    "./utils": {
+      "types": "./dist-lib/types/entradas/utils.d.ts",
+      "import": "./dist-lib/entradas/utils.js"
     },
     "./tokens.css": "./dist-lib/tokens.css",
     "./package.json": "./package.json"
@@ -48,10 +256,11 @@
     "check": "npm run typecheck && npm run lint && npm run test && vite build",
     "preview": "vite preview",
     "a11y": "node scripts/a11y.mjs",
-    "build:lib": "vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && node -e \"require('fs').copyFileSync('src/styles/tokens.css','dist-lib/tokens.css')\"",
+    "build:lib": "node scripts/generar-entradas.mjs && vite build -c vite.lib.config.ts && tsc -p tsconfig.build.json && node -e \"require('fs').copyFileSync('src/styles/tokens.css','dist-lib/tokens.css')\"",
     "smoke": "node scripts/lib-smoke.mjs",
     "check:release": "npm run check && npm run build:lib && npm run smoke && npm run a11y",
-    "prepublishOnly": "npm run check:release"
+    "prepublishOnly": "npm run check:release",
+    "entradas": "node scripts/generar-entradas.mjs"
   },
   "peerDependencies": {
     "react": "^19.0.0",

@@ -11,7 +11,7 @@ export default function AdvancedFilterDoc() {
     <ComponentDoc
       slug="advanced-filter"
       description="Constructor de filtros por condiciones: campo, operador y valor, combinadas con «todas» o «alguna». Las condiciones activas se leen como frases («Promedio mayor o igual que 8») y se quitan de una en una."
-      importCode={`import { AdvancedFilter, applyFilter, type FilterField, type FilterState } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { AdvancedFilter, applyFilter, type FilterField, type FilterState } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         {

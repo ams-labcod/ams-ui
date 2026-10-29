@@ -1,4 +1,4 @@
-import { Avatar, Button, Flex } from '@juanarenas312002/ams-ui'
+import { Avatar, Button, Flex } from '@ams-labcod/ams-ui'
 
 export default function FlexExample() {
   return (

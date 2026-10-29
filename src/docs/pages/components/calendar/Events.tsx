@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Calendar, formatDate } from '@juanarenas312002/ams-ui'
+import { Calendar, formatDate } from '@ams-labcod/ams-ui'
 
 const year = new Date().getFullYear()
 const month = new Date().getMonth()

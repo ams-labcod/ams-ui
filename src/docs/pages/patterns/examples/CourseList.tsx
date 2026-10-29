@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Search, SearchX } from 'lucide-react'
-import { Avatar, Badge, Button, ChipGroup, EmptyState, Grid, Inline, Input, Progress, Select, Skeleton, Stack, useDebouncedValue } from '@juanarenas312002/ams-ui'
+import { Avatar, Badge, Button, ChipGroup, EmptyState, Grid, Inline, Input, Progress, Select, Skeleton, Stack, useDebouncedValue } from '@ams-labcod/ams-ui'
 
 type Area = 'ciencias' | 'humanidades' | 'artes'
 interface Course {
