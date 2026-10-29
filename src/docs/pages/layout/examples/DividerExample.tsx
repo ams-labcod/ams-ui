@@ -1,4 +1,4 @@
-import { Button, Divider, Stack } from '@juanarenas312002/ams-ui'
+import { Button, Divider, Stack } from '@ams-labcod/ams-ui'
 
 export default function DividerExample() {
   return (

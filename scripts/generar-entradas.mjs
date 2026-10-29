@@ -1,6 +1,6 @@
 // Genera un punto de entrada por componente a partir de src/index.ts:
 //   src/entradas/<componente>.ts  y  "exports"["./<componente>"] en package.json.
-// Así una app puede importar '@juanarenas312002/ams-ui/button' y cargar solo eso.
+// Así una app puede importar '@ams-labcod/ams-ui/button' y cargar solo eso.
 // Uso: npm run entradas (después de agregar o mover una exportación en src/index.ts).
 // La prueba src/entradas.test.ts falla si index.ts y las entradas no coinciden.
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'

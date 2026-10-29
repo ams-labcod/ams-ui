@@ -10,7 +10,7 @@ export default function SliderDoc() {
     <ComponentDoc
       slug="slider"
       description="Elige un valor o un rango arrastrando. Útil cuando importa más la posición aproximada que el número exacto, o para acotar filtros."
-      importCode={`import { Slider } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Slider } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Basic', title: 'Valor, rango y formato', description: 'Un número o un par [desde, hasta]. formatValue escribe el valor como corresponde: decimales, moneda…' }]}
       api={[

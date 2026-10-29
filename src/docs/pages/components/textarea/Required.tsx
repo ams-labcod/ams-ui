@@ -1,4 +1,4 @@
-import { FormField, Textarea } from '@juanarenas312002/ams-ui'
+import { FormField, Textarea } from '@ams-labcod/ams-ui'
 
 export default function Required() {
   return (

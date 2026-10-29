@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Copy, Download, FileText, Pencil, Trash2 } from 'lucide-react'
-import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuTrigger } from '@juanarenas312002/ams-ui'
+import { ContextMenu, ContextMenuContent, ContextMenuItem, ContextMenuLabel, ContextMenuSeparator, ContextMenuTrigger } from '@ams-labcod/ams-ui'
 
 export default function FileCard() {
   const [last, setLast] = useState('ninguna')

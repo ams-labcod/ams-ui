@@ -1,4 +1,4 @@
-import { Container } from '@juanarenas312002/ams-ui'
+import { Container } from '@ams-labcod/ams-ui'
 
 export default function ContainerExample() {
   return (

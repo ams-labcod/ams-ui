@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Dropzone, DropzoneFile, type DropzoneFileProps } from '@juanarenas312002/ams-ui'
+import { Dropzone, DropzoneFile, type DropzoneFileProps } from '@ams-labcod/ams-ui'
 
 type Item = Omit<DropzoneFileProps, 'onRemove'> & { id: number }
 let nextId = 0

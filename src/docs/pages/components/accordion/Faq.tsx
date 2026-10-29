@@ -1,4 +1,4 @@
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@juanarenas312002/ams-ui'
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@ams-labcod/ams-ui'
 
 // Las preguntas frecuentes de la referencia.
 const faq = [

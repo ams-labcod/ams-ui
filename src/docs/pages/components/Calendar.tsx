@@ -10,7 +10,7 @@ export default function CalendarDoc() {
     <ComponentDoc
       slug="calendar"
       description="Mes en cuadrícula para elegir un día o un rango. Reproduce el calendario de la referencia: celdas hundidas, días con eventos en turquesa con un punto y la semana empezando en lunes. El mes y el año se eligen directamente en la cabecera."
-      importCode={`import { Calendar } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Calendar } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Events', title: 'Con eventos y días bloqueados', description: 'Los puntos marcan exámenes y entregas; los domingos no se pueden elegir. Usa las flechas para moverte, Re Pág / Av Pág para cambiar de mes, o los selectores de mes y año para saltar.' },

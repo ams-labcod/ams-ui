@@ -11,7 +11,7 @@ export default function InputDoc() {
     <ComponentDoc
       slug="input"
       description="Campo de texto de una línea. Se hunde en la superficie (sunken) y se ilumina en turquesa al enfocarlo. Úsalo dentro de FormField para que la etiqueta, la ayuda y el error se conecten solos."
-      importCode={`import { FormField, Input } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { FormField, Input } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Basic', title: 'Uso básico', description: <>startIcon añade un icono decorativo a la izquierda, útil en búsquedas. Para buscar usa <Code>type="search"</Code>.</> },

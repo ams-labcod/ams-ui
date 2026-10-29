@@ -23,21 +23,21 @@ Cada componente tiene en la documentación un estado (estable, beta o experiment
 Requisitos: React 19 y Tailwind CSS v4.
 
 ```bash
-npm i @juanarenas312002/ams-ui
+npm i @ams-labcod/ams-ui
 npm i -D tailwindcss @tailwindcss/vite
 ```
 
 En el CSS de entrada de tu app, en lugar de `@import 'tailwindcss'`:
 
 ```css
-@import '@juanarenas312002/ams-ui/tokens.css';
-@source '../node_modules/@juanarenas312002/ams-ui/dist-lib';
+@import '@ams-labcod/ams-ui/tokens.css';
+@source '../node_modules/@ams-labcod/ams-ui/dist-lib';
 ```
 
 Carga Space Grotesk e Inter (en la documentación, Introducción, está el `<link>` exacto) y aplica el tema antes del primer pintado con el script de `index.html`.
 
 ```tsx
-import { Button, FormField, Input, toast, Toaster } from '@juanarenas312002/ams-ui'
+import { Button, FormField, Input, toast, Toaster } from '@ams-labcod/ams-ui'
 
 export function App() {
   return (
@@ -59,10 +59,10 @@ El paquete se publica con un archivo por componente y marca `"sideEffects": ["**
 También hay un punto de entrada por componente, por si prefieres hacerlo explícito o tu herramienta no descarta código sin usar:
 
 ```tsx
-import { Button } from '@juanarenas312002/ams-ui/button'
-import { DataTable, useDataTable } from '@juanarenas312002/ams-ui/data-table'
-import { cn, formatDate } from '@juanarenas312002/ams-ui/utils'
-import { useMediaQuery } from '@juanarenas312002/ams-ui/hooks'
+import { Button } from '@ams-labcod/ams-ui/button'
+import { DataTable, useDataTable } from '@ams-labcod/ams-ui/data-table'
+import { cn, formatDate } from '@ams-labcod/ams-ui/utils'
+import { useMediaQuery } from '@ams-labcod/ams-ui/hooks'
 ```
 
 El nombre de cada entrada es el de la carpeta del componente (`date-picker`, `alert-dialog`, `advanced-filter`…); `utils` agrupa `cn`, el tema y los formatos, y `hooks` los hooks. La lista completa está en `"exports"` de `package.json`. Las dependencias (Radix, TanStack Table, recharts, cmdk, react-hook-form, zod) no van dentro del paquete: las instala npm y se comparten con tu app.

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { EyeOff, Pin, TriangleAlert } from 'lucide-react'
-import { Toggle } from '@juanarenas312002/ams-ui'
+import { Toggle } from '@ams-labcod/ams-ui'
 
 export default function Toolbar() {
   const [atRisk, setAtRisk] = useState(false)

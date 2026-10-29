@@ -1,5 +1,5 @@
 {
-  "name": "@juanarenas312002/ams-ui",
+  "name": "@ams-labcod/ams-ui",
   "version": "0.4.0",
   "description": "Librería de componentes de AMS, el sistema de gestión académica: React, Tailwind CSS v4 y Radix.",
   "keywords": [
@@ -11,13 +11,13 @@
     "radix",
     "ams"
   ],
-  "homepage": "https://github.com/JuanArenas2002/AMS-UI#readme",
+  "homepage": "https://github.com/ams-labcod/ams-ui#readme",
   "bugs": {
-    "url": "https://github.com/JuanArenas2002/AMS-UI/issues"
+    "url": "https://github.com/ams-labcod/ams-ui/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JuanArenas2002/AMS-UI.git"
+    "url": "git+https://github.com/ams-labcod/ams-ui.git"
   },
   "type": "module",
   "sideEffects": [

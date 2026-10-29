@@ -10,7 +10,7 @@ export default function DialogDoc() {
     <ComponentDoc
       slug="dialog"
       description="Ventana sobre la página que pide una decisión o un dato sin perder el contexto. Mientras está abierta, el resto de la página queda inerte."
-      importCode={`import { Dialog, DialogTrigger, DialogContent, DialogFooter, DialogClose } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Dialog, DialogTrigger, DialogContent, DialogFooter, DialogClose } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Confirm', title: 'Confirmación', description: 'El título es la pregunta y la descripción cuenta la consecuencia. El botón final repite el verbo del disparador.' },

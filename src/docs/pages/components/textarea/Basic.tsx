@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormField, Textarea } from '@juanarenas312002/ams-ui'
+import { FormField, Textarea } from '@ams-labcod/ams-ui'
 
 const MAX = 280
 

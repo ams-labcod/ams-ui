@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Switch } from '@juanarenas312002/ams-ui'
+import { Switch } from '@ams-labcod/ams-ui'
 
 export default function Basic() {
   const [push, setPush] = useState(true)

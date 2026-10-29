@@ -13,7 +13,7 @@ export default function TableDoc() {
       importCode={`import {
   Table, TableHeader, TableBody, TableFooter, TableRow,
   TableHead, TableCell, TableCaption, TableEmpty,
-} from '@juanarenas312002/ams-ui'`}
+} from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Grades', title: 'Libreta de notas', description: 'Cifras alineadas a la derecha con tabular-nums, notas bajo 6 en rojo, nombre de la fila como encabezado (scope="row") y pie con el promedio.', previewClassName: 'p-4 sm:p-6' },

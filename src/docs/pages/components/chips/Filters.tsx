@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Chip, ChipGroup } from '@juanarenas312002/ams-ui'
+import { Chip, ChipGroup } from '@ams-labcod/ams-ui'
 
 const subjects = [
   { value: 'mat', label: 'Matemáticas' },

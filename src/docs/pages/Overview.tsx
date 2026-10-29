@@ -23,7 +23,7 @@ export default function Overview() {
 
       <DocSection title="Instalación" description="En un proyecto de React 19 con Vite y Tailwind CSS v4:">
         <CodeBlock
-          code={`npm i @juanarenas312002/ams-ui
+          code={`npm i @ams-labcod/ams-ui
 npm i -D tailwindcss @tailwindcss/vite`}
         />
         <p className="mt-4 max-w-prose text-sm text-fg-muted">
@@ -35,9 +35,9 @@ npm i -D tailwindcss @tailwindcss/vite`}
         <CodeBlock
           label="CSS"
           code={`/* src/index.css */
-@import '@juanarenas312002/ams-ui/tokens.css';
+@import '@ams-labcod/ams-ui/tokens.css';
 /* Tailwind debe ver las clases que usan los componentes: */
-@source '../node_modules/@juanarenas312002/ams-ui/dist-lib';`}
+@source '../node_modules/@ams-labcod/ams-ui/dist-lib';`}
         />
         <p className="mt-5 max-w-prose text-sm text-fg-muted">
           Carga las fuentes Space Grotesk e Inter en tu <Code>index.html</Code>:
@@ -55,7 +55,7 @@ npm i -D tailwindcss @tailwindcss/vite`}
         description="El tema lo decide el atributo data-theme. Sin atributo se usa el oscuro, que es el original de la marca. Puedes fijarlo en <html> o en cualquier contenedor para mostrar una zona con el otro tema."
       >
         <CodeBlock
-          code={`import { useTheme } from '@juanarenas312002/ams-ui'
+          code={`import { useTheme } from '@ams-labcod/ams-ui'
 
 function ThemeButton() {
   const { theme, toggleTheme } = useTheme()

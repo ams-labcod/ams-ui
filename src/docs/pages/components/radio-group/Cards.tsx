@@ -1,4 +1,4 @@
-import { RadioGroup } from '@juanarenas312002/ams-ui'
+import { RadioGroup } from '@ams-labcod/ams-ui'
 
 export default function Cards() {
   return (

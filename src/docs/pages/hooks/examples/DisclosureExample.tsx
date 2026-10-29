@@ -1,4 +1,4 @@
-import { Button, Sheet, SheetContent, useDisclosure } from '@juanarenas312002/ams-ui'
+import { Button, Sheet, SheetContent, useDisclosure } from '@ams-labcod/ams-ui'
 
 export default function DisclosureExample() {
   const filters = useDisclosure()

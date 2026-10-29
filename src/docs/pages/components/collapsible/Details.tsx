@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@juanarenas312002/ams-ui'
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@ams-labcod/ams-ui'
 
 export default function Details() {
   const [open, setOpen] = useState(false)

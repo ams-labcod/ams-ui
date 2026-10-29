@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { toast, useHotkey } from '@juanarenas312002/ams-ui'
+import { toast, useHotkey } from '@ams-labcod/ams-ui'
 
 export default function HotkeyExample() {
   const [count, setCount] = useState(0)

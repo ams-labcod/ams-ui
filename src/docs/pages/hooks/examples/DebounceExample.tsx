@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Search } from 'lucide-react'
-import { Input, useDebouncedValue } from '@juanarenas312002/ams-ui'
+import { Input, useDebouncedValue } from '@ams-labcod/ams-ui'
 
 export default function DebounceExample() {
   const [query, setQuery] = useState('')

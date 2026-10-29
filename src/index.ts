@@ -1,4 +1,4 @@
-// Punto de entrada público de @juanarenas312002/ams-ui.
+// Punto de entrada público de @ams-labcod/ams-ui.
 // Los consumidores importan además 'src/styles/tokens.css' y cargan
 // Space Grotesk + Inter (ver docs > Introducción).
 export { cn } from './lib/cn'

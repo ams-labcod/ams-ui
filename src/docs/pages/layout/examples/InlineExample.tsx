@@ -1,4 +1,4 @@
-import { Badge, Button, Inline } from '@juanarenas312002/ams-ui'
+import { Badge, Button, Inline } from '@ams-labcod/ams-ui'
 
 export default function InlineExample() {
   return (

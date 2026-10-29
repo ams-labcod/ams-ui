@@ -1,4 +1,4 @@
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, Avatar } from '@juanarenas312002/ams-ui'
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, Avatar } from '@ams-labcod/ams-ui'
 
 const teachers = ['Carolina Reyes', 'Javier Molina', 'Patricia Delgado', 'Diego Quintero', 'Camila Ruiz']
 

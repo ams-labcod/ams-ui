@@ -10,7 +10,7 @@ export default function AccordionDoc() {
     <ComponentDoc
       slug="accordion"
       description="Lista de secciones plegables. Reproduce las preguntas frecuentes de la referencia: tarjetas de vidrio, un «+» turquesa que gira al abrir y un fondo turquesa tenue en la abierta."
-      importCode={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Faq', title: 'Preguntas frecuentes', description: 'type="single" con collapsible: una abierta a la vez y se puede cerrar. Con type="multiple" se abren varias.' }]}
       api={[

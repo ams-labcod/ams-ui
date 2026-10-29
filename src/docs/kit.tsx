@@ -2,7 +2,7 @@
 // Usan los componentes de la librería siempre que existen.
 import { useState, type ReactNode } from 'react'
 import { Check, Copy, X } from 'lucide-react'
-import { Badge, Button, type BadgeVariant } from '@juanarenas312002/ams-ui'
+import { Badge, Button, type BadgeVariant } from '@ams-labcod/ams-ui'
 import { cn } from '../lib/cn'
 import type { Status, Version } from './registry'
 

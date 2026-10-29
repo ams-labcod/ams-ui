@@ -1,4 +1,4 @@
-import { ChipGroup } from '@juanarenas312002/ams-ui'
+import { ChipGroup } from '@ams-labcod/ams-ui'
 
 export default function Single() {
   return (

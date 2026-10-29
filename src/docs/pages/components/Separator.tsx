@@ -10,7 +10,7 @@ export default function SeparatorDoc() {
     <ComponentDoc
       slug="separator"
       description="Línea fina para separar grupos de contenido, con el mismo borde translúcido que las tarjetas de vidrio."
-      importCode={`import { Separator } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Separator } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Usage', title: 'Horizontal y vertical', description: 'El separador vertical se estira a la altura de su fila.' }]}
       api={[

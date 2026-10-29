@@ -1,4 +1,4 @@
-import { ProgressRing } from '@juanarenas312002/ams-ui'
+import { ProgressRing } from '@ams-labcod/ams-ui'
 
 // El anillo de asistencia del bento de la referencia.
 export default function Ring() {

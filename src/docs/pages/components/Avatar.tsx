@@ -10,7 +10,7 @@ export default function AvatarDoc() {
     <ComponentDoc
       slug="avatar"
       description="Representa a una persona con su foto o, si no hay, con sus iniciales sobre el degradado turquesa de la marca, como los avatares de roles y testimonios de la referencia."
-      importCode={`import { Avatar } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Avatar } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Sizes', title: 'Tamaños y respaldo', description: 'El último avatar apunta a una imagen que no existe y muestra las iniciales.' },

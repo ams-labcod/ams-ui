@@ -10,7 +10,7 @@ export default function StatDoc() {
     <ComponentDoc
       slug="stat"
       description="Cifra clave con su etiqueta y su variación respecto a un periodo, como las cifras del hero y la banda de estadísticas de la referencia. Es la pieza básica de un panel."
-      importCode={`import { Stat } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Stat } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Kpis', title: 'Indicadores', description: 'La variación se pinta según si subir es bueno: más inasistencias va en rojo aunque la flecha suba.', previewClassName: 'block' }]}
       api={[

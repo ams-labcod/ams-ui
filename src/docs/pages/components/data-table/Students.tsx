@@ -19,7 +19,7 @@ import {
   type ColumnDef,
   type FilterField,
   type FilterState,
-} from '@juanarenas312002/ams-ui'
+} from '@ams-labcod/ams-ui'
 import { gradeLabels, statusLabels, students, type Student } from '../../../sample-data'
 
 const statusVariant = { activo: 'success', pendiente: 'warning', retirado: 'neutral' } as const

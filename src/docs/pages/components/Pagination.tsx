@@ -10,7 +10,7 @@ export default function PaginationDoc() {
     <ComponentDoc
       slug="pagination"
       description="Navega entre páginas de una lista larga. Siempre muestra la primera y la última página, la actual y sus vecinas; el resto se resume con «…»."
-      importCode={`import { Pagination, paginationRange } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Pagination, paginationRange } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Basic', title: 'Veinte páginas' }]}
       api={[

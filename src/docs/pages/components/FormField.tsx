@@ -11,7 +11,7 @@ export default function FormFieldDoc() {
     <ComponentDoc
       slug="form-field"
       description="Une etiqueta, control, texto de ayuda y mensaje de error. El control que pongas dentro (Input, Textarea, Select, Checkbox, Switch) recibe el id, el estado de error y las descripciones sin cablear nada a mano."
-      importCode={`import { FormField, Label } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { FormField, Label } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[
         { name: 'Enrollment', title: 'Formulario con validación', description: 'Pulsa «Matricular estudiante» con el formulario vacío. La validación corre al enviar; los errores se muestran en cada campo y se leen al enfocarlo.' },

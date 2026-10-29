@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Progress } from '@juanarenas312002/ams-ui'
+import { Progress } from '@ams-labcod/ams-ui'
 
 export default function Bars() {
   const [sent, setSent] = useState(0)

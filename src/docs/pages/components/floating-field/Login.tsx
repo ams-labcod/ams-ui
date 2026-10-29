@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from 'react'
-import { Button, FloatingField } from '@juanarenas312002/ams-ui'
+import { Button, FloatingField } from '@ams-labcod/ams-ui'
 
 export default function Login() {
   const [error, setError] = useState<string>()

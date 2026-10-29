@@ -1,4 +1,4 @@
-import { Grid, ProgressRing, Stat } from '@juanarenas312002/ams-ui'
+import { Grid, ProgressRing, Stat } from '@ams-labcod/ams-ui'
 
 export default function Kpis() {
   return (

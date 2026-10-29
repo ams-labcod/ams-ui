@@ -10,7 +10,7 @@ export default function TooltipDoc() {
     <ComponentDoc
       slug="tooltip"
       description="Texto breve que aparece al pasar el puntero o enfocar un control. Sirve para nombrar botones de icono, no para explicar procesos."
-      importCode={`import { Tooltip } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { Tooltip } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'IconButtons', title: 'Botones de icono', description: 'Pasa el puntero o tabula hasta los botones. Tiene colores invertidos para separarse del vidrio.' }]}
       api={[

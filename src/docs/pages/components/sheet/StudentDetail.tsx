@@ -1,4 +1,4 @@
-import { Avatar, Badge, Button, Separator, Sheet, SheetClose, SheetContent, SheetTrigger } from '@juanarenas312002/ams-ui'
+import { Avatar, Badge, Button, Separator, Sheet, SheetClose, SheetContent, SheetTrigger } from '@ams-labcod/ams-ui'
 
 const grades = [
   ['Matemáticas', '9,4'],

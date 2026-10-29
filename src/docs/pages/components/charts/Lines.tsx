@@ -1,4 +1,4 @@
-import { LineChart } from '@juanarenas312002/ams-ui'
+import { LineChart } from '@ams-labcod/ams-ui'
 
 const data = [
   { periodo: 'P1 2025', '6.º': 7.8, '7.º': 7.4, '8.º': 7.9 },

@@ -10,7 +10,7 @@ export default function FloatingFieldDoc() {
     <ComponentDoc
       slug="floating-field"
       description="Campo con la etiqueta dentro: ocupa el sitio del placeholder y sube al enfocar o escribir. Ahorra altura en formularios cortos como el inicio de sesión."
-      importCode={`import { FloatingField } from '@juanarenas312002/ams-ui'`}
+      importCode={`import { FloatingField } from '@ams-labcod/ams-ui'`}
       examples={examples}
       sections={[{ name: 'Login', title: 'Inicio de sesión', description: 'Escribe un correo sin @ y pulsa «Ingresar» para ver el error. La etiqueta es un <label> real, no un placeholder.' }]}
       api={[

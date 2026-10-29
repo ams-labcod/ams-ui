@@ -1,4 +1,4 @@
-import { ScrollArea } from '@juanarenas312002/ams-ui'
+import { ScrollArea } from '@ams-labcod/ams-ui'
 
 const items = Array.from({ length: 18 }, (_, i) => ({
   id: i,
